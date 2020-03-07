@@ -1,5 +1,7 @@
 package io.github.tonimheinonen.blogger;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -30,6 +32,7 @@ public class MyRestController {
 
     @RequestMapping(value = "/blogposts", method= RequestMethod.POST)
     public ResponseEntity<Void> addBlogPost(@RequestBody BlogPost blog, UriComponentsBuilder b) {
+        blog.setCreationDate(new Date());
         database.save(blog);
 
         UriComponents uriComponents =
