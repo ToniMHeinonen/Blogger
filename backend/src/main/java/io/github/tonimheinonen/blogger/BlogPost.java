@@ -1,6 +1,6 @@
 package io.github.tonimheinonen.blogger;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +15,8 @@ public class BlogPost {
     private String topic;
     private String text;
     private Date creationDate;
+
+    public BlogPost() {}
 
     public BlogPost(String topic, String text, Date creationDate) {
         this.topic = topic;
