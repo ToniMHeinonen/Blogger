@@ -27,6 +27,7 @@ public class BloggerApplication implements CommandLineRunner  {
 		" -d \"{\\\"topic\\\":\\\"Example\\\",\\\"text\\\":\\\"There was an ample wisdom" +
 		" in this example...\\\"}\" http://localhost:8080/blogposts");
 		logger.info("DELETE blog by id: curl -X DELETE http://localhost:8080/blogposts/1");
+		logger.info("NOTE - You can also use URL to heroku backend: https://intense-mountain-19543.herokuapp.com/");
 	}
 
 	@Override
