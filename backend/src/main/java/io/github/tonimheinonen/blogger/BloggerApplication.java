@@ -29,9 +29,9 @@ public class BloggerApplication implements CommandLineRunner  {
 		if (database.count() == 0) {
 			ArrayList<BlogPost> posts = new ArrayList<>();
 
-			posts.add(new BlogPost("Kevät", "Oli kaunis kevätsää, mutta tosiaan, missä se talvi olikaan?", new Date()));
-			posts.add(new BlogPost("Koulu", "Minne meni koulu, vai oliko sittenkin joulu?", new Date()));
-			posts.add(new BlogPost("Projekti", "Yksi kaksi, oho niitä olikin kolme, vaiko sittenkin neljä?", new Date()));
+			posts.add(new BlogPost("Kevät", "Oli kaunis kevätsää, mutta tosiaan, missä se talvi olikaan?"));
+			posts.add(new BlogPost("Koulu", "Minne meni koulu, vai oliko sittenkin joulu?"));
+			posts.add(new BlogPost("Projekti", "Yksi kaksi, oho niitä olikin kolme, vaiko sittenkin neljä?"));
 
 			database.saveAll(posts);
 		}

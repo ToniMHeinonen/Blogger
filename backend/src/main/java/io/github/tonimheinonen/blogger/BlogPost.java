@@ -18,10 +18,10 @@ public class BlogPost {
 
     public BlogPost() {}
 
-    public BlogPost(String topic, String text, Date creationDate) {
+    public BlogPost(String topic, String text) {
         this.topic = topic;
         this.text = text;
-        this.creationDate = creationDate;
+        this.creationDate = new Date();
     }
 
     public long getId() {

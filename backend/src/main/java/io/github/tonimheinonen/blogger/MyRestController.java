@@ -29,7 +29,7 @@ public class MyRestController {
     }
 
     @RequestMapping(value = "/blogposts", method= RequestMethod.POST)
-    public ResponseEntity<Void> addCustomer(@RequestBody BlogPost blog, UriComponentsBuilder b) {
+    public ResponseEntity<Void> addBlogPost(@RequestBody BlogPost blog, UriComponentsBuilder b) {
         database.save(blog);
 
         UriComponents uriComponents =
