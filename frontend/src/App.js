@@ -21,7 +21,7 @@ function App() {
   }, [])
 
   return (
-    <div>{isLoading ? 'Loading...' : <AllPosts posting={blogPosts} amount={blogPosts.length}/>}</div>
+    <div>{isLoading ? 'Loading...' : <AllPosts allBlogPosts={blogPosts} amount={blogPosts.length}/>}</div>
   )
 }
 

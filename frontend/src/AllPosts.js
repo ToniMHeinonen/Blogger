@@ -5,10 +5,10 @@ function AllPosts(props) {
     let data = []
     for (let i = 0; i < props.amount; i++) {
         data.push(<Post 
-            key={props.posting[i].id} 
-            topic={props.posting[i].topic} 
-            creationDate={props.posting[i].creationDate} 
-            text={props.posting[i].text}>
+            key={props.allBlogPosts[i].id} 
+            topic={props.allBlogPosts[i].topic} 
+            creationDate={props.allBlogPosts[i].creationDate} 
+            text={props.allBlogPosts[i].text}>
             </Post>)
     }
 
