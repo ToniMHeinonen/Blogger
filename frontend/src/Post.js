@@ -6,6 +6,8 @@ function Post(props) {
     <h2>{props.topic}</h2>
     <h3>{props.creationDate}</h3>
     <p>{props.text}</p>
+    <button>Edit</button>
+    <button>Delete</button>
     </div>
     )
 }
