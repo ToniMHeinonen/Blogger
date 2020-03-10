@@ -20,22 +20,10 @@ function Home() {
     fetchBlogPosts()
   }, [])
 
-  const addPost = async () => {
-    const newPost = { topic: 'hello', text: 'uutta tekstiä' }
-    const conf = {
-      method: 'POST',
-      headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify(newPost)
-    }
-    await fetch('/blogposts/', conf)
-    window.location.reload()
-  }
-
   return (
     <div>
-    <button onClick={addPost}>Add</button>
     {isLoading ? 'Loading...' : <AllPosts allBlogPosts={blogPosts} amount={blogPosts.length}/>}
-  </div>
+    </div>
   )
 }
 
