@@ -15,6 +15,7 @@ public class BlogPost {
     private String topic;
     private String text;
     private Date creationDate;
+    private Date lastModified;
 
     public BlogPost() {}
 
@@ -52,8 +53,17 @@ public class BlogPost {
         this.creationDate = creationDate;
     }
 
+    public Date getLastModified() {
+        return lastModified;
+    }
+
+    public void setLastModified(Date lastModified) {
+        this.lastModified = lastModified;
+    }
+
     @Override
     public String toString() {
-        return "BlogPost [creationDate=" + creationDate + ", id=" + id + ", text=" + text + ", topic=" + topic + "]";
+        return "BlogPost [creationDate=" + creationDate + ", id=" + id + ", lastModified=" + lastModified + ", text="
+                + text + ", topic=" + topic + "]";
     }
 }
