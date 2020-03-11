@@ -49,7 +49,7 @@ public class BloggerApplication implements CommandLineRunner  {
 		// Print info about curl commands
 		System.out.println("\nGET all blogs:\ncurl -X GET http://localhost:8080/blogposts");
 		System.out.println("\nGET blog by id:\ncurl -X GET http://localhost:8080/blogposts/1");
-		System.out.println("\nGET comments by blogId:\ncurl -X GET http://localhost:8080/comments/1");
+		System.out.println("\nGET comments by blog id:\ncurl -X GET http://localhost:8080/comments/1");
 		System.out.println("\nPOST new blog:\ncurl -X POST -H \"Content-Type: application/json\"" +
 		" -d \"{\\\"topic\\\":\\\"Example\\\",\\\"text\\\":\\\"There was an ample wisdom" +
 		" in this example...\\\"}\" http://localhost:8080/blogposts");
@@ -58,6 +58,7 @@ public class BloggerApplication implements CommandLineRunner  {
 		System.out.println("\nPOST modify blog by id:\ncurl -X POST -H \"Content-Type: application/json\"" +
 		" -d \"{\\\"topic\\\":\\\"Example\\\",\\\"text\\\":\\\"There was an ample wisdom" +
 		" in this example...\\\"}\" http://localhost:8080/blogposts/1");
+		System.out.println("\nPOST like comment by comment id:\ncurl -X POST http://localhost:8080/comments/like/4");
 		System.out.println("\nDELETE blog by id:\ncurl -X DELETE http://localhost:8080/blogposts/1");
 		System.out.println("\nNOTE - You can also use URL to heroku backend: https://intense-mountain-19543.herokuapp.com/");
 	}

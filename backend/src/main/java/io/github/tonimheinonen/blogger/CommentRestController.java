@@ -41,4 +41,18 @@ public class CommentRestController {
         headers.setLocation(uriComponents.toUri());
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
+
+    @RequestMapping(value = "/comments/like/{commentId}", method= RequestMethod.POST)
+    public ResponseEntity<Void> likeComment(@PathVariable long commentId, UriComponentsBuilder b) {
+        Comment comment = commentDatabase.findById(commentId).orElse(null);
+        int curLikes = comment.getLikes();
+        comment.setLikes(curLikes + 1);
+        commentDatabase.save(comment);
+
+        UriComponents uriComponents =
+                b.path("/comments/{id}").buildAndExpand(comment.getId());
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(uriComponents.toUri());
+        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+    }
 }
