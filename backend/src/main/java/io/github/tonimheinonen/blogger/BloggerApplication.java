@@ -20,14 +20,6 @@ public class BloggerApplication implements CommandLineRunner  {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BloggerApplication.class, args);
-		logger.info("Creators: Olli Ahonen & Toni Heinonen");
-		logger.info("GET all blogs: curl -X GET http://localhost:8080/blogposts");
-		logger.info("GET blog by id: curl -X GET http://localhost:8080/blogposts/1");
-		logger.info("POST new blog: curl -X POST -H \"Content-Type: application/json\"" +
-		" -d \"{\\\"topic\\\":\\\"Example\\\",\\\"text\\\":\\\"There was an ample wisdom" +
-		" in this example...\\\"}\" http://localhost:8080/blogposts");
-		logger.info("DELETE blog by id: curl -X DELETE http://localhost:8080/blogposts/1");
-		logger.info("NOTE - You can also use URL to heroku backend: https://intense-mountain-19543.herokuapp.com/");
 	}
 
 	@Override
@@ -42,5 +34,19 @@ public class BloggerApplication implements CommandLineRunner  {
 
 			database.saveAll(posts);
 		}
+
+		logger.info("Creators: Olli Ahonen & Toni Heinonen");
+
+		// Print info about curl commands
+		System.out.println("\nGET all blogs:\ncurl -X GET http://localhost:8080/blogposts");
+		System.out.println("\nGET blog by id:\ncurl -X GET http://localhost:8080/blogposts/1");
+		System.out.println("\nPOST new blog:\ncurl -X POST -H \"Content-Type: application/json\"" +
+		" -d \"{\\\"topic\\\":\\\"Example\\\",\\\"text\\\":\\\"There was an ample wisdom" +
+		" in this example...\\\"}\" http://localhost:8080/blogposts");
+		System.out.println("\nPOST modify blog by id:\ncurl -X POST -H \"Content-Type: application/json\"" +
+		" -d \"{\\\"topic\\\":\\\"Example\\\",\\\"text\\\":\\\"There was an ample wisdom" +
+		" in this example...\\\"}\" http://localhost:8080/blogposts/1");
+		System.out.println("\nDELETE blog by id:\ncurl -X DELETE http://localhost:8080/blogposts/1");
+		System.out.println("\nNOTE - You can also use URL to heroku backend: https://intense-mountain-19543.herokuapp.com/");
 	}
 }
