@@ -42,6 +42,22 @@ public class MyRestController {
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
 
+    @RequestMapping(value = "/blogposts/{blogId}", method= RequestMethod.POST)
+    public ResponseEntity<Void> modifyBlogPost(@PathVariable long blogId, @RequestBody BlogPost blog, UriComponentsBuilder b) {
+        BlogPost originalBlog = database.findById(blogId).orElse(null);
+        originalBlog.setTopic(blog.getTopic());
+        originalBlog.setText(blog.getText());
+        originalBlog.setLastModified(new Date());
+
+        database.save(originalBlog);
+
+        UriComponents uriComponents =
+                b.path("/blogposts/{id}").buildAndExpand(originalBlog.getId());
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(uriComponents.toUri());
+        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+    }
+
     @RequestMapping(value = "/blogposts/{blogId}", method= RequestMethod.DELETE)
     public ResponseEntity<Void> deleteBlogPost(@PathVariable long blogId) {
         database.deleteById(blogId);
