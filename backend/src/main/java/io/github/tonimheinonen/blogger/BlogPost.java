@@ -2,6 +2,7 @@ package io.github.tonimheinonen.blogger;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,9 +13,13 @@ public class BlogPost {
     @GeneratedValue
     private long id;
 
+    @Column
     private String topic;
+    @Column
     private String text;
+    @Column
     private Date creationDate;
+    @Column
     private Date lastModified;
 
     public BlogPost() {}
@@ -59,11 +64,5 @@ public class BlogPost {
 
     public void setLastModified(Date lastModified) {
         this.lastModified = lastModified;
-    }
-
-    @Override
-    public String toString() {
-        return "BlogPost [creationDate=" + creationDate + ", id=" + id + ", lastModified=" + lastModified + ", text="
-                + text + ", topic=" + topic + "]";
     }
 }

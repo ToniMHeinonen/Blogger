@@ -18,22 +18,25 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class MyRestController {
 
     @Autowired
-    BlogPostRepository database;
+    BlogPostRepository blogDatabase;
+
+    @Autowired
+    CommentRepository commentDatabase;
 
     @RequestMapping(value = "/blogposts", method= RequestMethod.GET)
     public Iterable<BlogPost> fetchBlogposts() {
-        return database.findAll();
+        return blogDatabase.findAll();
     }
 
     @RequestMapping(value = "/blogposts/{blogId}", method= RequestMethod.GET)
-    public BlogPost fetchBlogPosts(@PathVariable long blogId) {
-        return database.findById(blogId).get();
+    public BlogPost fetchBlogPost(@PathVariable long blogId) {
+        return blogDatabase.findById(blogId).get();
     }
 
     @RequestMapping(value = "/blogposts", method= RequestMethod.POST)
     public ResponseEntity<Void> addBlogPost(@RequestBody BlogPost blog, UriComponentsBuilder b) {
         blog.setCreationDate(new Date());
-        database.save(blog);
+        blogDatabase.save(blog);
 
         UriComponents uriComponents =
                 b.path("/blogposts/{id}").buildAndExpand(blog.getId());
@@ -44,12 +47,12 @@ public class MyRestController {
 
     @RequestMapping(value = "/blogposts/{blogId}", method= RequestMethod.POST)
     public ResponseEntity<Void> modifyBlogPost(@PathVariable long blogId, @RequestBody BlogPost blog, UriComponentsBuilder b) {
-        BlogPost originalBlog = database.findById(blogId).orElse(null);
+        BlogPost originalBlog = blogDatabase.findById(blogId).orElse(null);
         originalBlog.setTopic(blog.getTopic());
         originalBlog.setText(blog.getText());
         originalBlog.setLastModified(new Date());
 
-        database.save(originalBlog);
+        blogDatabase.save(originalBlog);
 
         UriComponents uriComponents =
                 b.path("/blogposts/{id}").buildAndExpand(originalBlog.getId());
@@ -60,7 +63,12 @@ public class MyRestController {
 
     @RequestMapping(value = "/blogposts/{blogId}", method= RequestMethod.DELETE)
     public ResponseEntity<Void> deleteBlogPost(@PathVariable long blogId) {
-        database.deleteById(blogId);
+        blogDatabase.deleteById(blogId);
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+    }
+
+    @RequestMapping(value = "/comments/{blogId}", method= RequestMethod.GET)
+    public Iterable<Comment> fetchComments(@PathVariable long blogId) {
+        return commentDatabase.findByBlogPostId(blogId);
     }
 }
