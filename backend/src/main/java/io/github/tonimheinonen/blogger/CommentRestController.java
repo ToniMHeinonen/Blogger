@@ -55,4 +55,10 @@ public class CommentRestController {
         headers.setLocation(uriComponents.toUri());
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
+
+    @RequestMapping(value = "/comments/{commentId}", method= RequestMethod.DELETE)
+    public ResponseEntity<Void> deleteComment(@PathVariable long commentId) {
+        commentDatabase.deleteById(commentId);
+        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+    }
 }

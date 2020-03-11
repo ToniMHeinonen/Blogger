@@ -60,6 +60,7 @@ public class BloggerApplication implements CommandLineRunner  {
 		" in this example...\\\"}\" http://localhost:8080/blogposts/1");
 		System.out.println("\nPOST like comment by comment id:\ncurl -X POST http://localhost:8080/comments/like/4");
 		System.out.println("\nDELETE blog by id:\ncurl -X DELETE http://localhost:8080/blogposts/1");
+		System.out.println("\nDELETE comment by comment id:\ncurl -X DELETE http://localhost:8080/comments/4");
 		System.out.println("\nNOTE - You can also use URL to heroku backend: https://intense-mountain-19543.herokuapp.com/");
 	}
 }
