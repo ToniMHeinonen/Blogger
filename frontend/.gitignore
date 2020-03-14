@@ -3,7 +3,6 @@
 ### MULTI-MODULE
 /target
 /node
-yarn.lock
 
 ### STS ###
 .apt_generated
