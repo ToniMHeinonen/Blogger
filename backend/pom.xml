@@ -19,11 +19,19 @@
 	</properties>
 
 	<dependencies>
-		<!-- For creating uber jar with frontend-->
+		<!-- For creating uber jar with frontend
 		<dependency>
 			<groupId>com.example</groupId>
 			<artifactId>frontend</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
+		</dependency>-->
+
+		<dependency>
+			<groupId>com.sample</groupId>
+			<artifactId>frontend</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/src/main/resources/frontend-0.0.1-SNAPSHOT.jar</systemPath>
 		</dependency>
 		
 		<!-- For database handling -->
