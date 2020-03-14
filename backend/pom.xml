@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>io.github.tonimheinonen</groupId>
-	<artifactId>blogger</artifactId>
+	<artifactId>backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>blogger</name>
 	<description>Blog platform</description>
@@ -19,6 +19,13 @@
 	</properties>
 
 	<dependencies>
+		<!-- For creating uber jar with frontend-->
+		<dependency>
+			<groupId>com.example</groupId>
+			<artifactId>frontend</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
 		<!-- For database handling -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
