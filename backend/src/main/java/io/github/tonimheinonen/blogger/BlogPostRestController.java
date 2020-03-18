@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,9 @@ public class BlogPostRestController {
 
     @Autowired
     BlogPostRepository blogDatabase;
+
+    @Autowired
+    CommentRepository commentDatabase;
 
     @RequestMapping(value = "/blogposts", method= RequestMethod.GET)
     public Iterable<BlogPost> fetchBlogposts() {
@@ -58,8 +62,10 @@ public class BlogPostRestController {
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
 
+    @Transactional
     @RequestMapping(value = "/blogposts/{blogId}", method= RequestMethod.DELETE)
     public ResponseEntity<Void> deleteBlogPost(@PathVariable long blogId) {
+        commentDatabase.removeAllByBlogPostId(blogId);
         blogDatabase.deleteById(blogId);
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
