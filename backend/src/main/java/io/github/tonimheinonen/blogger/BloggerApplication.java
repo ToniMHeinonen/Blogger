@@ -31,16 +31,16 @@ public class BloggerApplication implements CommandLineRunner  {
 		if (blogDatabase.count() == 0) {
 			ArrayList<BlogPost> posts = new ArrayList<>();
 
-			posts.add(new BlogPost("Kevät", "Oli kaunis kevätsää, mutta tosiaan, missä se talvi olikaan?"));
-			posts.add(new BlogPost("Koulu", "Minne meni koulu, vai oliko sittenkin joulu?"));
-			posts.add(new BlogPost("Projekti", "Yksi kaksi, oho niitä olikin kolme, vaiko sittenkin neljä?"));
+			posts.add(new BlogPost("Admin", "Kevät", "Oli kaunis kevätsää, mutta tosiaan, missä se talvi olikaan?"));
+			posts.add(new BlogPost("Admin", "Koulu", "Minne meni koulu, vai oliko sittenkin joulu?"));
+			posts.add(new BlogPost("Admin", "Projekti", "Yksi kaksi, oho niitä olikin kolme, vaiko sittenkin neljä?"));
 
 			blogDatabase.saveAll(posts);
 
 			ArrayList<Comment> comments = new ArrayList<>();
-			comments.add(new Comment("Tää on paras postaus koskaan.", posts.get(0)));
-			comments.add(new Comment("Ihan surkea postaus.", posts.get(0)));
-			comments.add(new Comment("Mikä ihmeen joulu?.", posts.get(1)));
+			comments.add(new Comment("Seppo", "Tää on paras postaus koskaan.", posts.get(0)));
+			comments.add(new Comment("Matti", "Ihan surkea postaus.", posts.get(0)));
+			comments.add(new Comment("Joppe", "Mikä ihmeen joulu?.", posts.get(1)));
 			commentDatabase.saveAll(comments);
 		}
 
@@ -51,10 +51,10 @@ public class BloggerApplication implements CommandLineRunner  {
 		System.out.println("\nGET blog by id:\ncurl -X GET http://localhost:8080/blogposts/1");
 		System.out.println("\nGET comments by blog id:\ncurl -X GET http://localhost:8080/comments/1");
 		System.out.println("\nPOST new blog:\ncurl -X POST -H \"Content-Type: application/json\"" +
-		" -d \"{\\\"topic\\\":\\\"Example\\\",\\\"text\\\":\\\"There was an ample wisdom" +
+		" -d \"{\\\"author\\\":\\\"Stephen\\\",\\\"topic\\\":\\\"Example\\\",\\\"text\\\":\\\"There was an ample wisdom" +
 		" in this example...\\\"}\" http://localhost:8080/blogposts");
 		System.out.println("\nPOST new comment by blog id:\ncurl -X POST -H \"Content-Type: application/json\"" +
-		" -d \"{\\\"text\\\":\\\"This comment is the best\\\"}\" http://localhost:8080/comments/1");
+		" -d \"{\\\"author\\\":\\\"Matthew\\\",\\\"text\\\":\\\"This comment is the best\\\"}\" http://localhost:8080/comments/1");
 		System.out.println("\nPOST modify blog by id:\ncurl -X POST -H \"Content-Type: application/json\"" +
 		" -d \"{\\\"topic\\\":\\\"Example\\\",\\\"text\\\":\\\"There was an ample wisdom" +
 		" in this example...\\\"}\" http://localhost:8080/blogposts/1");

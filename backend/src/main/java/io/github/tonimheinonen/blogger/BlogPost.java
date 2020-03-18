@@ -14,6 +14,8 @@ public class BlogPost {
     private long id;
 
     @Column
+    private String author;
+    @Column
     private String topic;
     @Column
     private String text;
@@ -24,7 +26,8 @@ public class BlogPost {
 
     public BlogPost() {}
 
-    public BlogPost(String topic, String text) {
+    public BlogPost(String author, String topic, String text) {
+        this.author = author;
         this.topic = topic;
         this.text = text;
         this.creationDate = new Date();
@@ -64,5 +67,13 @@ public class BlogPost {
 
     public void setLastModified(Date lastModified) {
         this.lastModified = lastModified;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 }

@@ -17,6 +17,8 @@ public class Comment {
     private long id;
 
     @Column
+    private String author;
+    @Column
     private String text;
     @Column
     private int likes;
@@ -31,7 +33,8 @@ public class Comment {
 
     public Comment() {}
 
-    public Comment(String text, BlogPost blogPost) {
+    public Comment(String author, String text, BlogPost blogPost) {
+        this.author = author;
         this.text = text;
         this.likes = 0;
         this.creationDate = new Date();
@@ -80,5 +83,13 @@ public class Comment {
 
     public void setBlogPost(BlogPost blogPost) {
         this.blogPost = blogPost;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 }
