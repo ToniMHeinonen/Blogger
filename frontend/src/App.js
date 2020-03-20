@@ -5,6 +5,7 @@ import Post from './Post'
 import AllPosts from './AllPosts'
 import AddPost from './AddPost'
 import Home from './Home'
+import ModifyPost from './ModifyPost'
 import {
   BrowserRouter as Router,
   Switch,
@@ -28,12 +29,9 @@ function App() {
             </ul>
           </nav>
         <Switch>
-          <Route path="/addPost">
-            <AddPost />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
+          <Route exact={true} path="/" component={Home}/>
+          <Route path="/addPost" component={AddPost}/>
+          <Route path="/modifyPost" component={ModifyPost}/>
         </Switch>
       </div>
     </Router>
