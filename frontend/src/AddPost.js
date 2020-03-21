@@ -28,30 +28,19 @@ function AddPost() {
       <label>
         Topic:
         <br/>
-        <input
-        id="topic"
-        name="topic"
-        type="text"
-        />
+        <input id="topic" name="topic" type="text"/>
       </label>
       <br/><br/>
       <label>
         Author:
         <br/>
-        <input
-        id="author"
-        name="author"
-        type="text"
-        />
+        <input id="author" name="author" type="text"/>
       </label>
       <br/><br/>
       Your story:
       <br/>
-      <textarea
-        id="blogi"
-        name="blogi"
-        type="text"/>
-        <br/><br/>
+      <textarea id="blogi" name="blogi" type="text"/>
+      <br/><br/>
       <button disabled={sending}>Send</button>
     </form>
   )

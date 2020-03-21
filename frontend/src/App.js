@@ -1,8 +1,5 @@
 import React from 'react'
-import logo from './logo.svg'
 import './App.css'
-import Post from './Post'
-import AllPosts from './AllPosts'
 import AddPost from './AddPost'
 import Home from './Home'
 import ModifyPost from './ModifyPost'

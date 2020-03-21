@@ -28,29 +28,19 @@ function ModifyPost(props) {
       <label>
         Topic:
         <br/>
-        <input
-          id="topic" name="topic" type="text"
-          defaultValue={props.location.state.topic}/>
+        <input id="topic" name="topic" type="text" defaultValue={props.location.state.topic}/>
       </label>
       <br/><br/>
       <label>
         Author:
         <br/>
-        <input
-        id="author"
-        name="author"
-        type="text"
-        defaultValue={props.location.state.author}/>
+        <input id="author" name="author" type="text" defaultValue={props.location.state.author}/>
       </label>
       <br/><br/>
       Your story:
       <br/>
-      <textarea
-        id="blogi"
-        name="blogi"
-        type="text"
-        defaultValue={props.location.state.text}/>
-        <br/><br/>
+      <textarea id="blogi" name="blogi" type="text" defaultValue={props.location.state.text}/>
+      <br/><br/>
       <button disabled={sending}>Send</button>
     </form>
   )
