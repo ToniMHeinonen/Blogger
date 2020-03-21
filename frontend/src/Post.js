@@ -4,15 +4,14 @@ import { Redirect } from 'react-router-dom';
 function Post(props) {
   const [redirect, setRedirect] = React.useState(false)
 
-  const deleted = (event) => {
-    fetch('/blogposts/' + props.id, {
+  const deleted = async (event) => {
+    await fetch('/blogposts/' + props.id, {
       method: 'DELETE',
     })
     .then(window.location.reload())
   }
 
   const edited = (event) => {
-    event.preventDefault()
     setRedirect(true)
   }
 
@@ -26,11 +25,13 @@ function Post(props) {
 
   return (
     <div>
-    <h2>{props.topic}</h2>
-    <h3>{props.creationDate}</h3>
+    <h3>{props.topic}</h3>
+    <h4>Author: {props.author}</h4>
+    <h4>Created: {props.creationDate}</h4>
     <p>{props.text}</p>
     <button onClick={edited}>Edit</button>
     <button onClick={deleted}>Delete</button>
+    <br></br><br></br>
     </div>
     )
 }

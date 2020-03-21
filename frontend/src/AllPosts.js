@@ -7,6 +7,7 @@ function AllPosts(props) {
         data.push(<Post 
             key={props.allBlogPosts[i].id}
             id={props.allBlogPosts[i].id}
+            author={props.allBlogPosts[i].author}
             topic={props.allBlogPosts[i].topic} 
             creationDate={props.allBlogPosts[i].creationDate} 
             text={props.allBlogPosts[i].text}>
