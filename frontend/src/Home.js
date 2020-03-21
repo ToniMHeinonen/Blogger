@@ -7,18 +7,22 @@ import AddPost from './AddPost';
 function Home() {
   const [blogPosts, setBlogPosts] = React.useState([])
   const [isLoading, setIsLoading] = React.useState(false)
+  const [errorWhenFetching, setErrorWhenFetching] = React.useState(false)
 
   async function fetchBlogPosts() {
     setIsLoading(true)
     const hr = await fetch('/blogposts/')
     const json = await hr.json()
     setBlogPosts(json)
-    setIsLoading(false)
   }
 
   React.useEffect(() => {
-    fetchBlogPosts()
+    fetchBlogPosts().then(() => setIsLoading(false)).catch(() => setErrorWhenFetching(true))
   }, [])
+
+  if (errorWhenFetching) {
+    return <div>Error, when fetching blogposts. Try to reload the page.</div>
+  }
 
   return (
     <div>
