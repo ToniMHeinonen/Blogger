@@ -9,7 +9,7 @@ function AddPost() {
     isSending(true)
     event.preventDefault()
     const data = new FormData(event.target)
-    const newPost = { topic: data.get('topic'), text: data.get('blogi') }
+    const newPost = { author: data.get('author'), topic: data.get('topic'), text: data.get('blogi') }
     const conf = {
       method: 'POST',
       headers: { 'Content-type': 'application/json' },
@@ -31,6 +31,16 @@ function AddPost() {
         <input
         id="topic"
         name="topic"
+        type="text"
+        />
+      </label>
+      <br/><br/>
+      <label>
+        Author:
+        <br/>
+        <input
+        id="author"
+        name="author"
         type="text"
         />
       </label>

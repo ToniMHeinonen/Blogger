@@ -18,7 +18,7 @@ function Post(props) {
   if (redirect) {
     return <Redirect to={{
       pathname: '/modifyPost',
-      state: { id: props.id, topic: props.topic, text: props.text }
+      state: { id: props.id, author: props.author, topic: props.topic, text: props.text }
   }}
 />
   }

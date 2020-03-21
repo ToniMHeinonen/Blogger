@@ -9,7 +9,7 @@ function ModifyPost(props) {
     isSending(true)
     event.preventDefault()
     const data = new FormData(event.target)
-    const newPost = { topic: data.get('topic'), text: data.get('blogi') }
+    const newPost = { author: data.get('author'), topic: data.get('topic'), text: data.get('blogi') }
     const conf = {
       method: 'POST',
       headers: { 'Content-type': 'application/json' },
@@ -29,10 +29,18 @@ function ModifyPost(props) {
         Topic:
         <br/>
         <input
-          id="topic"
-          name="topic"
-          type="text"
+          id="topic" name="topic" type="text"
           defaultValue={props.location.state.topic}/>
+      </label>
+      <br/><br/>
+      <label>
+        Author:
+        <br/>
+        <input
+        id="author"
+        name="author"
+        type="text"
+        defaultValue={props.location.state.author}/>
       </label>
       <br/><br/>
       Your story:
