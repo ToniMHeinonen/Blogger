@@ -1,6 +1,6 @@
-import React from 'react';
-import { Redirect } from 'react-router-dom';
-import AllComments from './AllComments';
+import React from 'react'
+import { Redirect } from 'react-router-dom'
+import AllComments from './AllComments'
 
 function Post(props) {
   const [redirect, setRedirect] = React.useState(false)
@@ -9,6 +9,7 @@ function Post(props) {
   const [isLoading, setIsLoading] = React.useState(false)
   const [errorWhenFetching, setErrorWhenFetching] = React.useState(false)
 
+  // Delete clicked post.
   const deleted = async (event) => {
     isSending(true)
     await fetch('/blogposts/' + props.id, {
@@ -17,10 +18,12 @@ function Post(props) {
     window.location.reload()
   }
 
+  // If Edit-button is clicked, setRedirect to true.
   const edited = (event) => {
     setRedirect(true)
   }
 
+  // Fetch comments from current blogpost.
   async function fetchComments() {
     setIsLoading(true)
     const hr = await fetch(`/comments/${props.id}`)
@@ -28,10 +31,12 @@ function Post(props) {
     setComments(json)
   }
 
+  // Fetch comments, when mounted.
   React.useEffect(() => {
     fetchComments().then(() => setIsLoading(false)).catch(() => setErrorWhenFetching(true))
   }, [])
 
+  // Redirect to /modifyPost, if Edit-button is clicked.
   if (redirect) {
     return <Redirect to={{
       pathname: '/modifyPost',
@@ -39,6 +44,7 @@ function Post(props) {
     }}/>
   }
 
+  // Show error-message, if fetching comments failed.
   if (errorWhenFetching) {
     return <div>Error, when fetching comments. Try to reload the page.</div>
   }
@@ -50,7 +56,7 @@ function Post(props) {
     <p>{props.text}</p>
     <button disabled={sending} onClick={edited}>Edit</button>
     <button disabled={sending} onClick={deleted}>Delete</button>
-    <br></br><br></br>
+    <br/><br/>
     <h4>Comments</h4>
     {isLoading ? 'Loading...' : <AllComments allComments={comments} amount={comments.length}/>}
     </div>

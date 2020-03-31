@@ -1,10 +1,11 @@
-import React from 'react';
-import { Redirect } from 'react-router-dom';
+import React from 'react'
+import { Redirect } from 'react-router-dom'
 
 function ModifyPost(props) {
   const [redirect, setRedirect] = React.useState(false)
   const [sending, isSending] = React.useState(false)
 
+  // Post modified blogpost.
   const send = async (event) => {
     isSending(true)
     event.preventDefault()
@@ -19,6 +20,7 @@ function ModifyPost(props) {
     setRedirect(true)
   }
 
+  // Go back to homepage, after posting blogpost.
   if (redirect) {
     return <Redirect push to="/"/>
   }
