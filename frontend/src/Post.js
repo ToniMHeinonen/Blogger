@@ -1,9 +1,13 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import AllComments from './AllComments';
 
 function Post(props) {
   const [redirect, setRedirect] = React.useState(false)
   const [sending, isSending] = React.useState(false)
+  const [comments, setComments] = React.useState([])
+  const [isLoading, setIsLoading] = React.useState(false)
+  const [errorWhenFetching, setErrorWhenFetching] = React.useState(false)
 
   const deleted = async (event) => {
     isSending(true)
@@ -17,23 +21,38 @@ function Post(props) {
     setRedirect(true)
   }
 
+  async function fetchComments() {
+    setIsLoading(true)
+    const hr = await fetch(`/comments/${props.id}`)
+    const json = await hr.json()
+    setComments(json)
+  }
+
+  React.useEffect(() => {
+    fetchComments().then(() => setIsLoading(false)).catch(() => setErrorWhenFetching(true))
+  }, [])
+
   if (redirect) {
     return <Redirect to={{
       pathname: '/modifyPost',
       state: { id: props.id, author: props.author, topic: props.topic, text: props.text }
-  }}
-/>
+    }}/>
+  }
+
+  if (errorWhenFetching) {
+    return <div>Error, when fetching comments. Try to reload the page.</div>
   }
 
   return (
     <div>
-    <h3>{props.topic}</h3>
-    <h4>Author: {props.author}</h4>
-    <h4>Created: {props.creationDate}</h4>
+    <h1>{props.topic}</h1>
+    <h5>Author: {props.author} <br/>Created: {props.creationDate}</h5>
     <p>{props.text}</p>
     <button disabled={sending} onClick={edited}>Edit</button>
     <button disabled={sending} onClick={deleted}>Delete</button>
     <br></br><br></br>
+    <h4>Comments</h4>
+    {isLoading ? 'Loading...' : <AllComments allComments={comments} amount={comments.length}/>}
     </div>
     )
 }
