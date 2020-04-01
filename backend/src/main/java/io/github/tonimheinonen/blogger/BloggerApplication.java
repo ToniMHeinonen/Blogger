@@ -51,6 +51,7 @@ public class BloggerApplication implements CommandLineRunner  {
 		System.out.println("\nGET search blogs by topic or text:\ncurl -X GET http://localhost:8080/blogposts/search/{text}");
 		System.out.println("\nGET blog by id:\ncurl -X GET http://localhost:8080/blogposts/{id}");
 		System.out.println("\nGET comments by blog id:\ncurl -X GET http://localhost:8080/comments/{id}");
+		System.out.println("\nGET search comments by blog id and text:\ncurl -X GET http://localhost:8080/comments/{id}/search/{text}");
 		System.out.println("\nPOST new blog:\ncurl -X POST -H \"Content-Type: application/json\"" +
 		" -d \"{\\\"author\\\":\\\"Stephen\\\",\\\"topic\\\":\\\"Example\\\",\\\"text\\\":\\\"There was an ample wisdom" +
 		" in this example...\\\"}\" http://localhost:8080/blogposts");

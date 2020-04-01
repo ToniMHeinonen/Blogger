@@ -7,33 +7,37 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+@Table(name="COMMENT")
 @Entity
 public class Comment {
     @Id
     @GeneratedValue
+    @Column(name="ID")
     private long id;
 
-    @Column
+    @Column(name="AUTHOR")
     private String author;
-    @Column
+    @Column(name="TEXT")
     private String text;
-    @Column
+    @Column(name="LIKES")
     private int likes;
-    @Column
+    @Column(name="CREATIONDATE")
     private Date creationDate;
-    @Column
+    @Column(name="LASTMODIFIED")
     private Date lastModified;
 
     @JsonIgnore
     @ManyToOne
     private BlogPost blogPost;
 
-    public Comment() {}
+    public Comment() {super();}
 
     public Comment(String author, String text, BlogPost blogPost) {
+        super();
         this.author = author;
         this.text = text;
         this.likes = 0;
