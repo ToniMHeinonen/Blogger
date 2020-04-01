@@ -3,7 +3,8 @@ import { Redirect } from 'react-router-dom'
 import AllComments from './AllComments'
 
 function Post(props) {
-  const [redirect, setRedirect] = React.useState(false)
+  const [redirectToModify, setRedirectToModify] = React.useState(false)
+  const [redirectToAddComment, setRedirectToAddComment] = React.useState(false)
   const [sending, isSending] = React.useState(false)
   const [comments, setComments] = React.useState([])
   const [isLoading, setIsLoading] = React.useState(false)
@@ -18,9 +19,14 @@ function Post(props) {
     window.location.reload()
   }
 
-  // If Edit-button is clicked, setRedirect to true.
+  // If Edit-button is clicked, setRedirectToModify to true.
   const edited = (event) => {
-    setRedirect(true)
+    setRedirectToModify(true)
+  }
+
+  // If Add comment -button is clicked, set RedirectToAddComment to true.
+  const addcomment = (event) => {
+    setRedirectToAddComment(true)
   }
 
   // Fetch comments from current blogpost.
@@ -37,10 +43,18 @@ function Post(props) {
   }, [])
 
   // Redirect to /modifyPost, if Edit-button is clicked.
-  if (redirect) {
+  if (redirectToModify) {
     return <Redirect to={{
       pathname: '/modifyPost',
       state: { id: props.id, author: props.author, topic: props.topic, text: props.text }
+    }}/>
+  }
+
+  // Redirect to /addComment, if Add comment -button is clicked.
+  if (redirectToAddComment) {
+    return <Redirect to={{
+      pathname: '/addComment',
+      state: { id: props.id }
     }}/>
   }
 
@@ -58,6 +72,7 @@ function Post(props) {
     <button disabled={sending} onClick={deleted}>Delete</button>
     <br/><br/>
     <h4>Comments</h4>
+    <button disabled={sending} onClick={addcomment}>Add comment</button>
     {isLoading ? 'Loading...' : <AllComments allComments={comments} amount={comments.length}/>}
     </div>
     )
