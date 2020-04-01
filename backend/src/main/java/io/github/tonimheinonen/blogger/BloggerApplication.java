@@ -48,19 +48,20 @@ public class BloggerApplication implements CommandLineRunner  {
 
 		// Print info about curl commands
 		System.out.println("\nGET all blogs:\ncurl -X GET http://localhost:8080/blogposts");
-		System.out.println("\nGET blog by id:\ncurl -X GET http://localhost:8080/blogposts/1");
-		System.out.println("\nGET comments by blog id:\ncurl -X GET http://localhost:8080/comments/1");
+		System.out.println("\nGET search blogs by topic or text:\ncurl -X GET http://localhost:8080/blogposts/search/{text}");
+		System.out.println("\nGET blog by id:\ncurl -X GET http://localhost:8080/blogposts/{id}");
+		System.out.println("\nGET comments by blog id:\ncurl -X GET http://localhost:8080/comments/{id}");
 		System.out.println("\nPOST new blog:\ncurl -X POST -H \"Content-Type: application/json\"" +
 		" -d \"{\\\"author\\\":\\\"Stephen\\\",\\\"topic\\\":\\\"Example\\\",\\\"text\\\":\\\"There was an ample wisdom" +
 		" in this example...\\\"}\" http://localhost:8080/blogposts");
 		System.out.println("\nPOST new comment by blog id:\ncurl -X POST -H \"Content-Type: application/json\"" +
-		" -d \"{\\\"author\\\":\\\"Matthew\\\",\\\"text\\\":\\\"This comment is the best\\\"}\" http://localhost:8080/comments/1");
+		" -d \"{\\\"author\\\":\\\"Matthew\\\",\\\"text\\\":\\\"This comment is the best\\\"}\" http://localhost:8080/comments/{id}");
 		System.out.println("\nPOST modify blog by id:\ncurl -X POST -H \"Content-Type: application/json\"" +
 		" -d \"{\\\"topic\\\":\\\"Example\\\",\\\"text\\\":\\\"There was an ample wisdom" +
-		" in this example...\\\"}\" http://localhost:8080/blogposts/1");
-		System.out.println("\nPOST like comment by comment id:\ncurl -X POST http://localhost:8080/comments/like/4");
-		System.out.println("\nDELETE blog by id:\ncurl -X DELETE http://localhost:8080/blogposts/1");
-		System.out.println("\nDELETE comment by comment id:\ncurl -X DELETE http://localhost:8080/comments/4");
+		" in this example...\\\"}\" http://localhost:8080/blogposts/{id}");
+		System.out.println("\nPOST like comment by comment id:\ncurl -X POST http://localhost:8080/comments/like/{id}");
+		System.out.println("\nDELETE blog by id:\ncurl -X DELETE http://localhost:8080/blogposts/{id}");
+		System.out.println("\nDELETE comment by comment id:\ncurl -X DELETE http://localhost:8080/comments/{id}");
 		System.out.println("\nNOTE - You can also use URL to heroku backend: https://intense-mountain-19543.herokuapp.com/");
 	}
 }

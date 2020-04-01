@@ -6,27 +6,31 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Table(name="BLOGPOST")
 @Entity
 public class BlogPost {
     @Id
     @GeneratedValue
+    @Column(name="ID")
     private long id;
 
-    @Column
+    @Column(name="AUTHOR")
     private String author;
-    @Column
+    @Column(name="TOPIC")
     private String topic;
-    @Column
+    @Column(name="TEXT")
     private String text;
-    @Column
+    @Column(name="CREATIONDATE")
     private Date creationDate;
-    @Column
+    @Column(name="LASTMODIFIED")
     private Date lastModified;
 
-    public BlogPost() {}
+    public BlogPost() {super();}
 
     public BlogPost(String author, String topic, String text) {
+        super();
         this.author = author;
         this.topic = topic;
         this.text = text;

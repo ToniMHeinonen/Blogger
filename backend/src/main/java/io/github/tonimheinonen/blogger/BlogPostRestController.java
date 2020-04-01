@@ -1,6 +1,8 @@
 package io.github.tonimheinonen.blogger;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -27,6 +29,11 @@ public class BlogPostRestController {
     @RequestMapping(value = "/blogposts", method= RequestMethod.GET)
     public Iterable<BlogPost> fetchBlogposts() {
         return blogDatabase.findAll();
+    }
+
+    @RequestMapping(value = "/blogposts/search/{text}", method= RequestMethod.GET)
+    public Iterable<BlogPost> searchBlogPosts(@PathVariable String text) {
+        return blogDatabase.findByTopicContainsIgnoreCaseOrTextContainsIgnoreCase(text, text);
     }
 
     @RequestMapping(value = "/blogposts/{blogId}", method= RequestMethod.GET)
