@@ -28,6 +28,11 @@ public class CommentRestController {
         return commentDatabase.findByBlogPostId(blogId);
     }
 
+    @RequestMapping(value = "/comments/{blogId}/search/{text}", method= RequestMethod.GET)
+    public Iterable<Comment> searchComments(@PathVariable long blogId, @PathVariable String text) {
+        return commentDatabase.findByBlogPostIdAndTextContainsIgnoreCase(blogId, text);
+    }
+
     @RequestMapping(value = "/comments/{blogId}", method= RequestMethod.POST)
     public ResponseEntity<Void> addComment(@PathVariable long blogId, @RequestBody Comment comment, UriComponentsBuilder b) {
         BlogPost blogPost = blogDatabase.findById(blogId).orElse(null);
