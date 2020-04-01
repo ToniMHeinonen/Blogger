@@ -9,6 +9,7 @@ import {
   Route,
   Link
 } from "react-router-dom"
+import AddComment from './AddComment'
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
           <Route exact={true} path="/" component={Home}/>
           <Route path="/addPost" component={AddPost}/>
           <Route path="/modifyPost" component={ModifyPost}/>
+          <Route path="/addComment" component={AddComment}/>
         </Switch>
       </div>
     </Router>
