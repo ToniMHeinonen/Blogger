@@ -1,5 +1,4 @@
 import React from 'react'
-import SearchResult from './SearchResult'
 import Post from './Post'
 import AllPosts from './AllPosts'
 
