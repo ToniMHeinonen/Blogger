@@ -47,6 +47,7 @@ public class BloggerApplication implements CommandLineRunner  {
 		logger.info("Creators: Olli Ahonen & Toni Heinonen");
 
 		// Print info about curl commands
+		System.out.println("\nPOST test if logged in:\ncurl -X POST http://localhost:8080/login");
 		System.out.println("\nGET all blogs:\ncurl -X GET http://localhost:8080/blogposts");
 		System.out.println("\nGET search blogs by topic or text:\ncurl -X GET http://localhost:8080/blogposts/search/{text}");
 		System.out.println("\nGET blog by id:\ncurl -X GET http://localhost:8080/blogposts/{id}");
