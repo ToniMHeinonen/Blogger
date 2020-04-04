@@ -26,6 +26,9 @@ public class BlogPostRestController {
     @Autowired
     CommentRepository commentDatabase;
 
+    @RequestMapping(value = "/login", method= RequestMethod.POST)
+    public void login() {}
+
     @RequestMapping(value = "/blogposts", method= RequestMethod.GET)
     public Iterable<BlogPost> fetchBlogposts() {
         return blogDatabase.findAll();
