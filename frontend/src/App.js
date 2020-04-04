@@ -11,6 +11,7 @@ import {
 } from "react-router-dom"
 import AddComment from './AddComment'
 import Search from './Search'
+import Login from './Login'
 
 function App() {
 
@@ -28,6 +29,9 @@ function App() {
               <li>
                 <Link to="/search">Search</Link>
               </li>
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
             </ul>
           </nav>
         <Switch>
@@ -36,6 +40,7 @@ function App() {
           <Route path="/modifyPost" component={ModifyPost}/>
           <Route path="/addComment" component={AddComment}/>
           <Route path="/search" component={Search}/>
+          <Route path="/login" component={Login}/>
         </Switch>
       </div>
     </Router>
