@@ -14,11 +14,20 @@ function Comment(props) {
     window.location.reload()
   }
 
+  const liked = async (event) => {
+    isSending(true)
+    await fetch('/comments/like/' + props.id, {
+      method: 'POST',
+    })
+    window.location.reload()
+  }
+
   return (
     <div>
     <h5>Author: {props.author} <br/>Created: {props.creationDate}
     <br/>Likes: {props.likes}</h5>
     <p>{props.text}</p>
+    <button disabled={sending} onClick={liked}>Like</button>
     {!loggedIn ? null : <button disabled={sending} onClick={deleted}>Delete comment</button>}
     <br/>
     </div>
