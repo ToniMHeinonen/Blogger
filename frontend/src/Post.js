@@ -1,6 +1,7 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 import AllComments from './AllComments'
+import LoginContext from './LoginContext'
 
 function Post(props) {
   const [redirectToModify, setRedirectToModify] = React.useState(false)
@@ -9,6 +10,7 @@ function Post(props) {
   const [comments, setComments] = React.useState([])
   const [isLoading, setIsLoading] = React.useState(false)
   const [errorWhenFetching, setErrorWhenFetching] = React.useState(false)
+  const {loggedIn, changeLogin} = React.useContext(LoginContext)
 
   // Delete clicked post.
   const deleted = async (event) => {
@@ -68,8 +70,8 @@ function Post(props) {
     <h1>{props.topic}</h1>
     <h5>Author: {props.author} <br/>Created: {props.creationDate}</h5>
     <p>{props.text}</p>
-    <button disabled={sending} onClick={edited}>Edit</button>
-    <button disabled={sending} onClick={deleted}>Delete</button>
+    {!loggedIn ? null : <button disabled={sending} onClick={edited}>Edit</button>}
+    {!loggedIn ? null : <button disabled={sending} onClick={deleted}>Delete</button>}
     <br/><br/>
     <h4>Comments</h4>
     <button disabled={sending} onClick={addcomment}>Add comment</button>
