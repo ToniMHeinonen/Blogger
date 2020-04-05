@@ -5,6 +5,7 @@ function AddComment(props) {
   const [redirect, setRedirect] = React.useState(false)
   const [sending, isSending] = React.useState(false)
 
+  // Called, when user have pressed send-button. Get data from form and post to backend.
   const send = async (event) => {
     isSending(true)
     event.preventDefault()
@@ -19,6 +20,7 @@ function AddComment(props) {
     setRedirect(true)
   }
 
+  // Redirect to frontpage, when post is complete.
   if (redirect) {
     return <Redirect push to="/"/>
   }

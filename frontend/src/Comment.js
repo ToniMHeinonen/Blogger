@@ -14,6 +14,7 @@ function Comment(props) {
     window.location.reload()
   }
 
+  // Like clicked comment.
   const liked = async (event) => {
     isSending(true)
     await fetch('/comments/like/' + props.id, {

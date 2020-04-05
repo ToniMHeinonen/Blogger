@@ -19,16 +19,19 @@ function App() {
   const cookies = new Cookies()
   let booleanValue = false
 
+  // If user hasn't visited page before or cookies have expired, set authCookie to false.
   if (cookies.get('authCookie') === undefined) {
     cookies.set('authCookie', false, { path: '/' })
   }
 
+  // Has to use booleanValue, because authCookies returns string.
   if (cookies.get('authCookie') === 'false') {
     booleanValue = false
   } else {
     booleanValue = true
   }
 
+  // LoginContext variables.
   const [loggedIn, setLoggedIn] = React.useState(booleanValue)
   const changeLogin = (attr) => setLoggedIn(attr)
 

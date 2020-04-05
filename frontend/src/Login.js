@@ -8,6 +8,7 @@ function Login() {
   const {loggedIn, changeLogin} = React.useContext(LoginContext)
   const cookies = new Cookies()
   
+  // If successful login, set contextvalues and cookies to true.
   const send = async (event) => {
     event.preventDefault()
     const conf = {
@@ -21,6 +22,7 @@ function Login() {
     }
   }
 
+  // Redirect back to frontpage after successful login.
   if (redirect) {
     return <Redirect push to="/"/>
   }
