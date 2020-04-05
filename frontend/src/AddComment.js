@@ -15,7 +15,7 @@ function AddComment(props) {
       headers: { 'Content-type': 'application/json' },
       body: JSON.stringify(newPost)
     }
-    await fetch(`/comments/ + ${props.location.state.id}`, conf)
+    await fetch(`/comments/${props.location.state.id}`, conf)
     setRedirect(true)
   }
 
