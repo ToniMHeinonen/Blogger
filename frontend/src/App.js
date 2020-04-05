@@ -13,9 +13,23 @@ import AddComment from './AddComment'
 import Search from './Search'
 import Login from './Login'
 import LoginContext from './LoginContext'
+import Cookies from 'universal-cookie'
 
 function App() {
-  const [loggedIn, setLoggedIn] = React.useState(false)
+  const cookies = new Cookies()
+  let booleanValue = false
+
+  if (cookies.get('authCookie') === undefined) {
+    cookies.set('authCookie', false, { path: '/' })
+  }
+
+  if (cookies.get('authCookie') === 'false') {
+    booleanValue = false
+  } else {
+    booleanValue = true
+  }
+
+  const [loggedIn, setLoggedIn] = React.useState(booleanValue)
   const changeLogin = (attr) => setLoggedIn(attr)
 
   return (
@@ -27,9 +41,10 @@ function App() {
               <li>
                 <Link to="/">Home</Link>
               </li>
-              <li>
+                {!loggedIn ? null : 
+                <li>
                 <Link to="/addPost">Add new post</Link>
-              </li>
+                </li>}
               <li>
                 <Link to="/search">Search</Link>
               </li>
