@@ -14,6 +14,7 @@ function Login() {
     }
     const hr = await fetch('/login', conf)
     if (hr.ok === true) {
+      changeLogin(true)
       setRedirect(true)
     }
   }
