@@ -12,10 +12,14 @@ import {
 import AddComment from './AddComment'
 import Search from './Search'
 import Login from './Login'
+import LoginContext from './LoginContext'
 
 function App() {
+  const [loggedIn, setLoggedIn] = React.useState(false)
+  const changeLogin = (attr) => setLoggedIn(attr)
 
   return (
+    <LoginContext.Provider value={{loggedIn, changeLogin,}}>
     <Router>
       <div>
         <nav>
@@ -44,6 +48,7 @@ function App() {
         </Switch>
       </div>
     </Router>
+    </LoginContext.Provider>
   )
 }
 
