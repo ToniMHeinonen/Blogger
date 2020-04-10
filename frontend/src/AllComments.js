@@ -15,6 +15,10 @@ function AllComments(props) {
       </Comment>)
   }
 
+  if (data.length === 0 && props.from === 'search') {
+    return <div>No comments found.</div>
+  }
+
   return <div>{data}</div>
 }
 

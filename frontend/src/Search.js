@@ -77,8 +77,8 @@ function Search() {
       </label>
       <button disabled={sending}>Send</button>
     </form>
-    {hideBlogResult ? null : <AllPosts allBlogPosts={blogResult} amount={blogResult.length}/>}
-    {hideCommentResult ? null : <AllComments allComments={commentResult} amount={commentResult.length}/>}
+    {hideBlogResult ? null : <AllPosts allBlogPosts={blogResult} amount={blogResult.length} from='search'/>}
+    {hideCommentResult ? null : <AllComments allComments={commentResult} amount={commentResult.length} from='search'/>}
     </div>
   )
 }

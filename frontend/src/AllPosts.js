@@ -15,6 +15,10 @@ function AllPosts(props) {
       </Post>)
   }
 
+  if (data.length === 0 && props.from === 'search') {
+    return <div>No posts found.</div>
+  }
+
   return <div>{data}</div>
 }
 
