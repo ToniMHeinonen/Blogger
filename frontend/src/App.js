@@ -14,6 +14,7 @@ import Search from './Search'
 import Login from './Login'
 import LoginContext from './LoginContext'
 import Cookies from 'universal-cookie'
+import NotFound from './NotFound'
 
 function App() {
   const cookies = new Cookies()
@@ -63,6 +64,7 @@ function App() {
           <Route path="/addComment" component={AddComment}/>
           <Route path="/search" component={Search}/>
           <Route path="/login" component={Login}/>
+          <Route parh="/*" component={NotFound}/>
         </Switch>
       </div>
     </Router>
