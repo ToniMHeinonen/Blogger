@@ -4,6 +4,12 @@ import LoginContext from './LoginContext'
 function Comment(props) {
   const [sending, isSending] = React.useState(false)
   const {loggedIn, changeLogin} = React.useContext(LoginContext)
+  const date = new Date(props.creationDate)
+  const year = date.getFullYear()
+  const month = date.getMonth()
+  const day = date.getDay()
+  const hour = date.getHours()
+  const minute = date.getMinutes()
 
   // Delete clicked comment.
   const deleted = async (event) => {
@@ -25,7 +31,8 @@ function Comment(props) {
 
   return (
     <div>
-    <h5>Author: {props.author} <br/>Created: {props.creationDate}
+    <h5>Author: {props.author} <br/>
+    Created: {day}.{month}.{year} {(hour < 10 ? '0':'') + hour}:{(minute < 10 ? '0':'') + minute}
     <br/>Likes: {props.likes}</h5>
     <p>{props.text}</p>
     <button disabled={sending} onClick={liked}>Like</button>
