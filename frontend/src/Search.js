@@ -11,12 +11,13 @@ function Search() {
   const [blogPosts, setBlogPosts] = React.useState([])
   const [commentResult, setCommentResult] = React.useState([])
   const [hideCommentResult, setHideCommentResult] = React.useState(true)
+  const [errorWhenFetching, setErrorWhenFetching] = React.useState(false)
 
   // Fetch blogposts.
   async function fetchBlogPosts() {
     const hr = await fetch('/blogposts/')
     const json = await hr.json()
-    setBlogPosts(json)
+    return json
   }
 
   // Get data from the form and fetch blogposts/comments.
@@ -52,9 +53,20 @@ function Search() {
     }
   }
 
-  // Fetch blogposts, when mounted.
+  // Fetch blogposts, when mounted. Cancel fetch, if user moves away from /search.
   React.useEffect(() => {
-    fetchBlogPosts()
+    let isCancelled = false
+
+    fetchBlogPosts().then((result) => {
+      if (!isCancelled) {
+        setBlogPosts(result)
+      }
+    })
+    .catch(() => setErrorWhenFetching(true))
+
+    return () => {
+      isCancelled = true
+    }
   }, [])
 
   return (
@@ -79,6 +91,7 @@ function Search() {
     </form>
     {hideBlogResult ? null : <AllPosts allBlogPosts={blogResult} amount={blogResult.length} from='search'/>}
     {hideCommentResult ? null : <AllComments allComments={commentResult} amount={commentResult.length} from='search'/>}
+    {errorWhenFetching ? 'Error, when fetching blogposts. Try to reload the page.' : null}
     </div>
   )
 }

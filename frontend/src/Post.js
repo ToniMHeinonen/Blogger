@@ -42,12 +42,26 @@ function Post(props) {
     setIsLoading(true)
     const hr = await fetch(`/comments/${props.id}`)
     const json = await hr.json()
-    setComments(json)
+    return json
   }
 
-  // Fetch comments, when mounted.
+  // Fetch comments, when mounted. Cancel fetch, if user moves away from the current page.
   React.useEffect(() => {
-    fetchComments().then(() => setIsLoading(false)).catch(() => setErrorWhenFetching(true))
+    let isCancelled = false
+
+    fetchComments()
+      .then((result) => {
+        if (!isCancelled) {
+          setComments(result)
+          setIsLoading(false)
+        }
+      })
+      .catch(() => setErrorWhenFetching(true))
+
+    return () => {
+      isCancelled = true
+    }
+
   }, [])
 
   // Redirect to /modifyPost, if Edit-button is clicked.

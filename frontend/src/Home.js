@@ -12,12 +12,26 @@ function Home() {
     setIsLoading(true)
     const hr = await fetch('/blogposts/')
     const json = await hr.json()
-    setBlogPosts(json)
+    return json
   }
 
-  // Fetch all blogposts, when mounted.
+  // Fetch all blogposts, when mounted. Cancel fetch, if user moves away from homepage.
   React.useEffect(() => {
-    fetchBlogPosts().then(() => setIsLoading(false)).catch(() => setErrorWhenFetching(true))
+    let isCancelled = false
+
+    fetchBlogPosts()
+      .then((result) => {
+        if (!isCancelled) {
+          setBlogPosts(result)
+          setIsLoading(false)
+        }
+      })
+      .catch(() => setErrorWhenFetching(true))
+
+    return () => {
+      isCancelled = true
+    }
+
   }, [])
 
   // Show error-message, if fetching blogposts failed.
