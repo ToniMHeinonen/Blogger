@@ -10,7 +10,8 @@ function AllPosts(props) {
       id={props.allBlogPosts[i].id}
       author={props.allBlogPosts[i].author}
       topic={props.allBlogPosts[i].topic} 
-      creationDate={props.allBlogPosts[i].creationDate} 
+      creationDate={props.allBlogPosts[i].creationDate}
+      lastModified={props.allBlogPosts[i].lastModified}
       text={props.allBlogPosts[i].text}>
       </Post>)
   }

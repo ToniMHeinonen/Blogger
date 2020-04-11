@@ -9,7 +9,8 @@ function AllComments(props) {
       key={props.allComments[i].id}
       id={props.allComments[i].id}
       author={props.allComments[i].author}
-      creationDate={props.allComments[i].creationDate} 
+      creationDate={props.allComments[i].creationDate}
+      lastModified={props.allComments[i].lastModified}
       text={props.allComments[i].text}
       likes={props.allComments[i].likes}>
       </Comment>)

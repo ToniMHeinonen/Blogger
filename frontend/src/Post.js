@@ -11,12 +11,12 @@ function Post(props) {
   const [isLoading, setIsLoading] = React.useState(false)
   const [errorWhenFetching, setErrorWhenFetching] = React.useState(false)
   const {loggedIn, changeLogin} = React.useContext(LoginContext)
-  const date = new Date(props.creationDate)
-  const year = date.getFullYear()
-  const month = date.getMonth()
-  const day = date.getDay()
-  const hour = date.getHours()
-  const minute = date.getMinutes()
+
+  function getDate(text, time) {
+    const date = new Date(time)
+    return <>{text}: {date.getDay()}.{date.getMonth()+1}.{date.getFullYear()} {(date.getHours() < 10 ? '0':'') + 
+    date.getHours()}:{(date.getMinutes() < 10 ? '0':'') + date.getMinutes()}</>
+  }
 
   // Delete clicked post.
   const deleted = async (event) => {
@@ -88,8 +88,10 @@ function Post(props) {
   return (
     <div>
     <h1>{props.topic}</h1>
-    <h5>Author: {props.author} <br/>
-    Created: {day}.{month+1}.{year} {(hour < 10 ? '0':'') + hour}:{(minute < 10 ? '0':'') + minute}</h5>
+    <h5>Author: {props.author}<br/>
+    {getDate('Created', props.creationDate)}<br/>
+    {props.lastModified === null ? null : <> {getDate('Last modified', props.lastModified)}</>}
+    </h5>
     <p>{props.text}</p>
     {!loggedIn ? null : <button disabled={sending} onClick={edited}>Edit</button>}
     {!loggedIn ? null : <button disabled={sending} onClick={deleted}>Delete</button>}
