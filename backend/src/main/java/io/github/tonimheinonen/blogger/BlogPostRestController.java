@@ -1,8 +1,6 @@
 package io.github.tonimheinonen.blogger;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -17,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
+@Transactional
 @RestController
 public class BlogPostRestController {
 
@@ -72,7 +71,6 @@ public class BlogPostRestController {
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
 
-    @Transactional
     @RequestMapping(value = "/blogposts/{blogId}", method= RequestMethod.DELETE)
     public ResponseEntity<Void> deleteBlogPost(@PathVariable long blogId) {
         commentDatabase.removeAllByBlogPostId(blogId);
