@@ -49,6 +49,21 @@ public class CommentRestController {
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
 
+    @RequestMapping(value = "/comments/modify/{commentId}", method= RequestMethod.POST)
+    public ResponseEntity<Void> modifyComment(@PathVariable long commentId, @RequestBody BlogPost comment, UriComponentsBuilder b) {
+        Comment originalComment = commentDatabase.findById(commentId).orElse(null);
+        originalComment.setText(comment.getText());
+        originalComment.setLastModified(new Date());
+
+        commentDatabase.save(originalComment);
+
+        UriComponents uriComponents =
+                b.path("/comments/modify/{commentId}").buildAndExpand(originalComment.getId());
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(uriComponents.toUri());
+        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+    }
+
     @RequestMapping(value = "/comments/like/{commentId}", method= RequestMethod.POST)
     public ResponseEntity<Void> likeComment(@PathVariable long commentId, UriComponentsBuilder b) {
         Comment comment = commentDatabase.findById(commentId).orElse(null);

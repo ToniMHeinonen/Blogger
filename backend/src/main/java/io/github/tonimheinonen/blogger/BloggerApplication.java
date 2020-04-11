@@ -62,6 +62,8 @@ public class BloggerApplication implements CommandLineRunner  {
 		System.out.println("\nPOST modify blog by id:\ncurl -X POST -H \"Content-Type: application/json\"" +
 		" -d \"{\\\"topic\\\":\\\"Example\\\",\\\"text\\\":\\\"There was an ample wisdom" +
 		" in this example...\\\"}\" http://localhost:8080/blogposts/{id}");
+		System.out.println("\nPOST modify comment by comment id:\ncurl -X POST -H \"Content-Type: application/json\"" +
+		" -d \"{\\\"text\\\":\\\"There was an ample wisdom in this example...\\\"}\" http://localhost:8080/comments/modify/{id}");
 		System.out.println("\nPOST like comment by comment id:\ncurl -X POST http://localhost:8080/comments/like/{id}");
 		System.out.println("\nDELETE blog by id:\ncurl -X DELETE http://localhost:8080/blogposts/{id}");
 		System.out.println("\nDELETE comment by comment id:\ncurl -X DELETE http://localhost:8080/comments/{id}");
