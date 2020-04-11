@@ -1,11 +1,18 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 
+/**
+ * Add comment.
+ * @param {*} props - properties(blog's id) received from Post.js. 
+ */
 function AddComment(props) {
   const [redirect, setRedirect] = React.useState(false)
   const [sending, isSending] = React.useState(false)
 
-  // Called, when user have pressed send-button. Get data from form and post to backend.
+  /**
+   * Called, when user have pressed send-button. Get data from form and post it.
+   * @param {*} event - event from form
+   */
   const send = async (event) => {
     isSending(true)
     event.preventDefault()

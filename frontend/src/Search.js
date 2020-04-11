@@ -3,6 +3,9 @@ import AllPosts from './AllPosts'
 import SearchResult from './SearchResult'
 import AllComments from './AllComments'
 
+/**
+ * Search-function.
+ */
 function Search() {
   const [sending, isSending] = React.useState(false)
   const [blogResult, setBlogResult] = React.useState([])
@@ -13,14 +16,19 @@ function Search() {
   const [hideCommentResult, setHideCommentResult] = React.useState(true)
   const [errorWhenFetching, setErrorWhenFetching] = React.useState(false)
 
-  // Fetch blogposts.
+  /**
+   * Fetch blogposts.
+   */
   async function fetchBlogPosts() {
     const hr = await fetch('/blogposts/')
     const json = await hr.json()
     return json
   }
 
-  // Get data from the form and fetch blogposts/comments.
+  /**
+   * Get data from the form and fetch blogposts/comments.
+   * @param {*} event - event from form.
+   */
   const search = async (event) => {
     isSending(true)
     event.preventDefault()
@@ -44,7 +52,10 @@ function Search() {
     isSending(false)
   }
 
-  // Chech if comments are selected from dropdown-list and show/hide blog-choice.
+  /**
+   * Chech if comments are selected from dropdown-list and show/hide blog-choice.
+   * @param {*} event - event from form
+   */
   const check = (event) => {
     if (event.target.value === 'comments') {
       setShowBlogChoice(false)
@@ -53,7 +64,10 @@ function Search() {
     }
   }
 
-  // Fetch blogposts, when mounted. Cancel fetch, if user moves away from /search.
+  /**
+   * Fetch blogposts, when mounted. Cancel fetch, if user moves away from /search
+   * in the middle of fetching.
+   */
   React.useEffect(() => {
     let isCancelled = false
 

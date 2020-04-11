@@ -1,7 +1,10 @@
 import React from 'react'
 import Comment from './Comment'
 
-// Push each comment to array with properties.
+/**
+ * Push each comment to array with properties.
+ * @param {*} props - properties
+ */
 function AllComments(props) {
   let data = []
   for (let i = 0; i < props.amount; i++) {
@@ -16,6 +19,7 @@ function AllComments(props) {
       </Comment>)
   }
 
+  // If AllComments is called from Search.
   if (data.length === 0 && props.from === 'search') {
     return <div>No comments found.</div>
   }

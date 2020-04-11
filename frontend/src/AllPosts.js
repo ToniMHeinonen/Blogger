@@ -1,7 +1,10 @@
 import React from 'react'
 import Post from './Post'
 
-// Push each blogpost to array with properties.
+/**
+ * Push each blogpost to array with properties.
+ * @param {*} props - properties
+ */
 function AllPosts(props) {
   let data = []
   for (let i = 0; i < props.amount; i++) {
@@ -16,6 +19,7 @@ function AllPosts(props) {
       </Post>)
   }
 
+  // If AllPosts is called from Search.
   if (data.length === 0 && props.from === 'search') {
     return <div>No posts found.</div>
   }

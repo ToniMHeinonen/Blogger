@@ -3,6 +3,10 @@ import { Redirect } from 'react-router-dom'
 import AllComments from './AllComments'
 import LoginContext from './LoginContext'
 
+/**
+ * Post-function. Contains data in blogpost.
+ * @param {*} props - properties (id, author, topic, text, creationDate, lastModified)
+ */
 function Post(props) {
   const [redirectToModify, setRedirectToModify] = React.useState(false)
   const [redirectToAddComment, setRedirectToAddComment] = React.useState(false)
@@ -12,13 +16,21 @@ function Post(props) {
   const [errorWhenFetching, setErrorWhenFetching] = React.useState(false)
   const {loggedIn, changeLogin} = React.useContext(LoginContext)
 
+  /**
+   * Get date in a valid format.
+   * @param {*} text - text before date
+   * @param {*} time - value to transform to valid format
+   */
   function getDate(text, time) {
     const date = new Date(time)
     return <>{text}: {date.getDay()}.{date.getMonth()+1}.{date.getFullYear()} {(date.getHours() < 10 ? '0':'') + 
     date.getHours()}:{(date.getMinutes() < 10 ? '0':'') + date.getMinutes()}</>
   }
 
-  // Delete clicked post.
+  /**
+   * Delete clicked post.
+   * @param {*} event - event from form.
+   */
   const deleted = async (event) => {
     isSending(true)
     await fetch('/blogposts/' + props.id, {
@@ -27,17 +39,25 @@ function Post(props) {
     window.location.reload()
   }
 
-  // If Edit-button is clicked, setRedirectToModify to true.
+  /**
+   * If Edit-button is clicked, setRedirectToModify to true.
+   * @param {*} event - event from form
+   */
   const edited = (event) => {
     setRedirectToModify(true)
   }
 
-  // If Add comment -button is clicked, set RedirectToAddComment to true.
+  /**
+   * If Add comment -button is clicked, set RedirectToAddComment to true.
+   * @param {*} event - event from form.
+   */
   const addcomment = (event) => {
     setRedirectToAddComment(true)
   }
 
-  // Fetch comments from current blogpost.
+  /**
+   * Fetch comments from current blogpost.
+   */
   async function fetchComments() {
     setIsLoading(true)
     const hr = await fetch(`/comments/${props.id}`)
@@ -45,7 +65,10 @@ function Post(props) {
     return json
   }
 
-  // Fetch comments, when mounted. Cancel fetch, if user moves away from the current page.
+  /**
+   * Fetch comments, when mounted. Cancel fetch, if user moves away from the current page
+   * in the middle of fetching.
+   */
   React.useEffect(() => {
     let isCancelled = false
 

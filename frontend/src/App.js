@@ -17,6 +17,9 @@ import Cookies from 'universal-cookie'
 import NotFound from './NotFound'
 import ModifyComment from './ModifyComment'
 
+/**
+ * Called, when app starts.
+ */
 function App() {
   const cookies = new Cookies()
   let booleanValue = false
@@ -38,7 +41,7 @@ function App() {
   const changeLogin = (attr) => setLoggedIn(attr)
 
   return (
-    <LoginContext.Provider value={{loggedIn, changeLogin,}}>
+    <LoginContext.Provider value={{loggedIn, changeLogin}}>
     <Router>
       <div>
         <nav>

@@ -1,5 +1,9 @@
 import React from 'react'
 
+/**
+ * Used to get topic of all blogposts to the form in Search.
+ * @param {*} props - properties
+ */
 function SearchResult(props) {
 
   let data = []

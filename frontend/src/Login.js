@@ -3,12 +3,18 @@ import { Redirect } from 'react-router-dom'
 import LoginContext from './LoginContext'
 import Cookies from 'universal-cookie'
 
+/**
+ * Login-function.
+ */
 function Login() {
   const [redirect, setRedirect] = React.useState(false)
   const {loggedIn, changeLogin} = React.useContext(LoginContext)
   const cookies = new Cookies()
   
-  // If successful login, set contextvalues and cookies to true.
+  /**
+   * If successful login, set contextvalues and cookies to true.
+   * @param {*} event 
+   */
   const send = async (event) => {
     event.preventDefault()
     const conf = {

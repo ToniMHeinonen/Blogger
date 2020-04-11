@@ -2,12 +2,18 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 import Cookies from 'universal-cookie'
 
+/**
+ * Add new blogpost.
+ */
 function AddPost() {
   const [redirect, setRedirect] = React.useState(false)
   const [sending, isSending] = React.useState(false)
   const cookies = new Cookies()
 
-  // Called, when user have pressed send-button. Get data from form and post to backend.
+  /**
+   * Called, when use have pressed send-button. Get data from form and post it.
+   * @param {*} event - event from form
+   */
   const send = async (event) => {
     isSending(true)
     event.preventDefault()
@@ -27,6 +33,7 @@ function AddPost() {
     return <Redirect push to="/"/>
   }
 
+  // If user is admin, show form.
   if (cookies.get('authCookie') === 'true') {
     return (
       <form onSubmit={send}>
@@ -51,6 +58,7 @@ function AddPost() {
     )
   }
 
+  // If user isn't admin, show error-message.
   return (
     <div>
       You are not allowed to add posts.

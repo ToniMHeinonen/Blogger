@@ -2,12 +2,19 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 import Cookies from 'universal-cookie'
 
+/**
+ * Modify blogpost.
+ * @param {*} props - properties received from Post (id, author, topic, text) 
+ */
 function ModifyPost(props) {
   const [redirect, setRedirect] = React.useState(false)
   const [sending, isSending] = React.useState(false)
   const cookies = new Cookies()
 
-  // Post modified blogpost.
+  /**
+   * Post modified blogpost.
+   * @param {*} event - event from form
+   */
   const send = async (event) => {
     isSending(true)
     event.preventDefault()
@@ -27,6 +34,7 @@ function ModifyPost(props) {
     return <Redirect push to="/"/>
   }
 
+  // If user is admin, show form.
   if (cookies.get('authCookie') === 'true') {
     return (
       <form onSubmit={send}>
@@ -51,6 +59,7 @@ function ModifyPost(props) {
     )
   }
 
+  // If user isn't admin, show error-message.
   return (
     <div>
       You are not allowed to edit posts.

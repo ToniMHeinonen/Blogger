@@ -2,23 +2,38 @@ import React from 'react'
 import LoginContext from './LoginContext'
 import { Redirect } from 'react-router-dom'
 
+/**
+ * Comment-function. Contains data in comment.
+ * @param {*} props - properties (id, author, text, creationDate, lastModified, likes)
+ */
 function Comment(props) {
   const [sending, isSending] = React.useState(false)
   const {loggedIn, changeLogin} = React.useContext(LoginContext)
   const [redirectToModify, setRedirectToModify] = React.useState(false)
 
+  /**
+   * Get date in a valid format.
+   * @param {*} text - text before date
+   * @param {*} time - value to transform to valid format
+   */
   function getDate(text, time) {
     const date = new Date(time)
     return <>{text}: {date.getDay()}.{date.getMonth()+1}.{date.getFullYear()} {(date.getHours() < 10 ? '0':'') + 
     date.getHours()}:{(date.getMinutes() < 10 ? '0':'') + date.getMinutes()}</>
   }
 
-    // If Edit-button is clicked, setRedirectToModify to true.
+    /**
+     * If Edit-button is clicked, setRedirectToModify to true.
+     * @param {*} event - event from form
+     */
     const edited = (event) => {
       setRedirectToModify(true)
     }
 
-  // Delete clicked comment.
+  /**
+   * Delete clicked comment.
+   * @param {*} event - event from form
+   */
   const deleted = async (event) => {
     isSending(true)
     await fetch('/comments/' + props.id, {
@@ -35,7 +50,10 @@ function Comment(props) {
       }}/>
     }
 
-  // Like clicked comment.
+  /**
+   * Like clicked comment.
+   * @param {*} event - event from form
+   */
   const liked = async (event) => {
     isSending(true)
     await fetch('/comments/like/' + props.id, {

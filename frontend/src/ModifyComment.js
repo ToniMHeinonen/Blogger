@@ -2,12 +2,19 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 import Cookies from 'universal-cookie'
 
+/**
+ * Modify comment.
+ * @param {*} props - properties received from Comment (id, author, text) 
+ */
 function ModifyComment(props) {
   const [redirect, setRedirect] = React.useState(false)
   const [sending, isSending] = React.useState(false)
   const cookies = new Cookies()
 
-  // Post modified blogpost.
+  /**
+   * Post modified comment.
+   * @param {*} event - event from form
+   */
   const send = async (event) => {
     isSending(true)
     event.preventDefault()
@@ -22,11 +29,12 @@ function ModifyComment(props) {
     setRedirect(true)
   }
 
-  // Go back to homepage, after posting blogpost.
+  // Go back to homepage, after posting comment.
   if (redirect) {
     return <Redirect push to="/"/>
   }
 
+  // If user is admin, show form.
   if (cookies.get('authCookie') === 'true') {
     return (
       <form onSubmit={send}>
@@ -45,6 +53,7 @@ function ModifyComment(props) {
     )
   }
 
+  // If user isn't admin, show error-message.
   return (
     <div>
       You are not allowed to edit posts.
