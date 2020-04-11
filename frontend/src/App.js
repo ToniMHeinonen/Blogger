@@ -15,6 +15,7 @@ import Login from './Login'
 import LoginContext from './LoginContext'
 import Cookies from 'universal-cookie'
 import NotFound from './NotFound'
+import ModifyComment from './ModifyComment'
 
 function App() {
   const cookies = new Cookies()
@@ -64,6 +65,7 @@ function App() {
           <Route path="/addComment" component={AddComment}/>
           <Route path="/search" component={Search}/>
           <Route path="/login" component={Login}/>
+          <Route path="/modifyComment" component={ModifyComment}/>
           <Route parh="/*" component={NotFound}/>
         </Switch>
       </div>
