@@ -89,7 +89,7 @@ function Post(props) {
     <div>
     <h1>{props.topic}</h1>
     <h5>Author: {props.author} <br/>
-    Created: {day}.{month}.{year} {(hour < 10 ? '0':'') + hour}:{(minute < 10 ? '0':'') + minute}</h5>
+    Created: {day}.{month+1}.{year} {(hour < 10 ? '0':'') + hour}:{(minute < 10 ? '0':'') + minute}</h5>
     <p>{props.text}</p>
     {!loggedIn ? null : <button disabled={sending} onClick={edited}>Edit</button>}
     {!loggedIn ? null : <button disabled={sending} onClick={deleted}>Delete</button>}

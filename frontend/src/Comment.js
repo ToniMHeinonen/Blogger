@@ -32,7 +32,7 @@ function Comment(props) {
   return (
     <div>
     <h5>Author: {props.author} <br/>
-    Created: {day}.{month}.{year} {(hour < 10 ? '0':'') + hour}:{(minute < 10 ? '0':'') + minute}
+    Created: {day}.{month+1}.{year} {(hour < 10 ? '0':'') + hour}:{(minute < 10 ? '0':'') + minute}
     <br/>Likes: {props.likes}</h5>
     <p>{props.text}</p>
     <button disabled={sending} onClick={liked}>Like</button>
