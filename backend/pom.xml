@@ -19,12 +19,12 @@
 	</properties>
 
 	<dependencies>
-		<!-- For creating uber jar with frontend
-		<dependency>
+		<!-- For creating uber jar with frontend -->
+		<!-- <dependency>
 			<groupId>com.example</groupId>
 			<artifactId>frontend</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
-		</dependency>-->
+		</dependency> -->
 
 		<dependency>
 			<groupId>com.sample</groupId>
@@ -39,10 +39,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-rest</artifactId>
-		</dependency>
+		</dependency> -->
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
@@ -57,6 +57,7 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
