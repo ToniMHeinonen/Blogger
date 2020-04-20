@@ -15,6 +15,7 @@ function Post(props) {
   const [isLoading, setIsLoading] = React.useState(false)
   const [errorWhenFetching, setErrorWhenFetching] = React.useState(false)
   const {loggedIn, changeLogin} = React.useContext(LoginContext)
+  const [showMore, setShowMore] = React.useState(false)
 
   /**
    * Get date in a valid format.
@@ -55,6 +56,10 @@ function Post(props) {
     setRedirectToAddComment(true)
   }
 
+  const showMoreClicked = (event) => {
+    setShowMore(false)
+  }
+
   /**
    * Fetch comments from current blogpost.
    */
@@ -71,6 +76,10 @@ function Post(props) {
    */
   React.useEffect(() => {
     let isCancelled = false
+
+    if (props.text.length > 200) {
+      setShowMore(true)
+    }
 
     fetchComments()
       .then((result) => {
@@ -115,7 +124,8 @@ function Post(props) {
     {getDate('Created', props.creationDate)}<br/>
     {props.lastModified === null ? null : <> {getDate('Last modified', props.lastModified)}</>}
     </h5>
-    <p>{props.text}</p>
+    {showMore ? <p>{props.text.substring(0, 200)}<br/><button onClick={showMoreClicked}>Show more</button></p> :
+    <p>{props.text}</p>}
     {!loggedIn ? null : <button disabled={sending} onClick={edited}>Edit</button>}
     {!loggedIn ? null : <button disabled={sending} onClick={deleted}>Delete</button>}
     <br/><br/>
