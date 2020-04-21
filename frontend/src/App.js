@@ -16,6 +16,7 @@ import LoginContext from './LoginContext'
 import Cookies from 'universal-cookie'
 import NotFound from './NotFound'
 import ModifyComment from './ModifyComment'
+import OlderPosts from './OlderPosts'
 
 /**
  * Called, when app starts.
@@ -69,6 +70,7 @@ function App() {
           <Route path="/search" component={Search}/>
           <Route path="/login" component={Login}/>
           <Route path="/modifyComment" component={ModifyComment}/>
+          <Route path="/olderPosts" component={OlderPosts}/>
           <Route parh="/*" component={NotFound}/>
         </Switch>
       </div>
