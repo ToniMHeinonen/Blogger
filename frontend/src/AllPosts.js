@@ -12,6 +12,14 @@ function AllPosts(props) {
   let newData = []
   let showPostsInPage = 5
 
+  props.allBlogPosts.sort((a, b) => {
+    let keyA = a.creationDate
+    let keyB = b.creationDate
+    if (keyA > keyB) return -1
+    if (keyA < keyB) return 1
+    return 0
+  })
+
   for (let i = 0; i < props.amount; i++) {
     data.push(<Post 
       key={props.allBlogPosts[i].id}
