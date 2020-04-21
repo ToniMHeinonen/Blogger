@@ -7,6 +7,15 @@ import Comment from './Comment'
  */
 function AllComments(props) {
   let data = []
+
+  props.allComments.sort((a, b) => {
+    let keyA = a.creationDate
+    let keyB = b.creationDate
+    if (keyA > keyB) return -1
+    if (keyA < keyB) return 1
+    return 0
+  })
+
   for (let i = 0; i < props.amount; i++) {
     data.push(<Comment 
       key={props.allComments[i].id}
