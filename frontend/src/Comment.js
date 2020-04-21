@@ -1,6 +1,7 @@
 import React from 'react'
 import LoginContext from './LoginContext'
 import { Redirect } from 'react-router-dom'
+import CheckComment from './util/CheckCommentLikes'
 
 /**
  * Comment-function. Contains data in comment.
@@ -10,6 +11,7 @@ function Comment(props) {
   const [sending, isSending] = React.useState(false)
   const {loggedIn, changeLogin} = React.useContext(LoginContext)
   const [redirectToModify, setRedirectToModify] = React.useState(false)
+  const [commentLiked, setCommentLiked] = CheckComment('comment' + props.id)
 
   /**
    * Get date in a valid format.
@@ -22,13 +24,13 @@ function Comment(props) {
     date.getHours()}:{(date.getMinutes() < 10 ? '0':'') + date.getMinutes()}</>
   }
 
-    /**
-     * If Edit-button is clicked, setRedirectToModify to true.
-     * @param {*} event - event from form
-     */
-    const edited = (event) => {
-      setRedirectToModify(true)
-    }
+  /**
+   * If Edit-button is clicked, setRedirectToModify to true.
+   * @param {*} event - event from form
+   */
+  const edited = (event) => {
+    setRedirectToModify(true)
+  }
 
   /**
    * Delete clicked comment.
@@ -59,6 +61,7 @@ function Comment(props) {
     await fetch('/comments/like/' + props.id, {
       method: 'POST',
     })
+    setCommentLiked('true')
     window.location.reload()
   }
 
@@ -66,15 +69,17 @@ function Comment(props) {
     <div>
     <h5>Author: {props.author}<br/>
     {getDate('Created', props.creationDate)}<br/>
-    {props.lastModified === null ? null : <> {getDate('Last modified', props.lastModified)}</>}
-    <br/>Likes: {props.likes}</h5>
+    {props.lastModified === null ? null : <>{getDate('Last modified', props.lastModified)}<br/></>}
+    Likes: {props.likes}</h5>
     <p>{props.text}</p>
-    <button disabled={sending} onClick={liked}>Like</button>
+    {commentLiked !== 'true' ? <button disabled={sending} onClick={liked}>Like</button> : null}
     {!loggedIn ? null : <button disabled={sending} onClick={edited}>Edit comment</button>}
     {!loggedIn ? null : <button disabled={sending} onClick={deleted}>Delete comment</button>}
     <br/>
     </div>
   )
 }
+
+// {commentLiked != null ? null : <button disabled={sending} onClick={liked}>Like</button>}
 
 export default Comment
