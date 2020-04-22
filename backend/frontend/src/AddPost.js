@@ -15,17 +15,19 @@ function AddPost() {
    * @param {*} event - event from form
    */
   const send = async (event) => {
-    isSending(true)
     event.preventDefault()
     const data = new FormData(event.target)
     const newPost = { author: data.get('author'), topic: data.get('topic'), text: data.get('blogi') }
-    const conf = {
-      method: 'POST',
-      headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify(newPost)
+    if (newPost.author.length > 0 && newPost.topic.length > 0 && newPost.text.length > 0) {
+      isSending(true)
+      const conf = {
+        method: 'POST',
+        headers: { 'Content-type': 'application/json' },
+        body: JSON.stringify(newPost)
+      }
+      await fetch('/blogposts/', conf)
+      setRedirect(true)
     }
-    await fetch('/blogposts/', conf)
-    setRedirect(true)
   }
 
   // Redirect to frontpage, when post is complete.

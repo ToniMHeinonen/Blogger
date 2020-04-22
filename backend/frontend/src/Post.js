@@ -16,6 +16,8 @@ function Post(props) {
   const [errorWhenFetching, setErrorWhenFetching] = React.useState(false)
   const {loggedIn, changeLogin} = React.useContext(LoginContext)
   const [hideLongText, setHideLongText] = React.useState(false)
+  const ref = React.createRef()
+  let previewPostLimit = 800
 
   /**
    * Get date in a valid format.
@@ -57,6 +59,10 @@ function Post(props) {
   }
 
   const showMoreClicked = (event) => {
+    ref.current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    })
     setHideLongText(!hideLongText)
   }
 
@@ -77,7 +83,7 @@ function Post(props) {
   React.useEffect(() => {
     let isCancelled = false
 
-    if (props.text.length > 200) {
+    if (props.text.length > previewPostLimit) {
       setHideLongText(true)
     }
 
@@ -119,15 +125,15 @@ function Post(props) {
 
   return (
     <div>
-    <h1>{props.topic}</h1>
+    <h1 ref={ref}>{props.topic}</h1>
     <h5>Author: {props.author}<br/>
     {getDate('Created', props.creationDate)}<br/>
     {props.lastModified === null ? null : <> {getDate('Last modified', props.lastModified)}</>}
     </h5>
-    {hideLongText ? <p style={{whiteSpace: "pre-wrap"}}>{props.text.substring(0, 800) + '...'}<br/>
+    {hideLongText ? <p style={{whiteSpace: "pre-wrap"}}>{props.text.substring(0, previewPostLimit) + '...'}<br/>
     <button onClick={showMoreClicked}>Show more</button></p> :
     <p style={{whiteSpace: "pre-wrap"}}>{props.text} 
-    {props.text.length > 800 ? <button onClick={showMoreClicked}>Show less</button> : null}</p>}
+    {props.text.length > previewPostLimit ? <button onClick={showMoreClicked}>Show less</button> : null}</p>}
     {!loggedIn ? null : <button disabled={sending} onClick={edited}>Edit</button>}
     {!loggedIn ? null : <button disabled={sending} onClick={deleted}>Delete</button>}
     <br/><br/>

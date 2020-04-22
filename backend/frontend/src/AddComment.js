@@ -14,17 +14,19 @@ function AddComment(props) {
    * @param {*} event - event from form
    */
   const send = async (event) => {
-    isSending(true)
     event.preventDefault()
     const data = new FormData(event.target)
     const newPost = { author: data.get('author'), text: data.get('comment') }
-    const conf = {
-      method: 'POST',
-      headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify(newPost)
+    if (newPost.author.length > 0 && newPost.text.length > 0) {
+      isSending(true)
+      const conf = {
+        method: 'POST',
+        headers: { 'Content-type': 'application/json' },
+        body: JSON.stringify(newPost)
+      }
+      await fetch(`/comments/${props.location.state.id}`, conf)
+      setRedirect(true)
     }
-    await fetch(`/comments/${props.location.state.id}`, conf)
-    setRedirect(true)
   }
 
   // Redirect to frontpage, when post is complete.
