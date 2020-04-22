@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
-@Transactional
 @RestController
 public class BlogPostRestController {
 
@@ -71,6 +70,7 @@ public class BlogPostRestController {
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
 
+    @Transactional
     @RequestMapping(value = "/blogposts/{blogId}", method= RequestMethod.DELETE)
     public ResponseEntity<Void> deleteBlogPost(@PathVariable long blogId) {
         commentDatabase.removeAllByBlogPostId(blogId);
