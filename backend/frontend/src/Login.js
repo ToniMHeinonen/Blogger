@@ -35,8 +35,7 @@ function Login() {
 
   return (
     <div>
-      Username: admin<br/>
-      Password: admin<br/>
+      Click to login.<br/>
     <button onClick={send}>Login</button>
     </div>
   )
