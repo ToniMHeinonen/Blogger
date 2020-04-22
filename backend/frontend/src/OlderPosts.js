@@ -17,12 +17,11 @@ function OlderPosts(props) {
 
   for (let i = 0; i < props.location.state.blogposts.length; i++) {
     topics.push(
-      <div
-        key={props.location.state.blogposts[i].id}
-        id={props.location.state.blogposts[i].id} 
-        onClick={clicked}>
+        <li key={props.location.state.blogposts[i].id}
+            id={props.location.state.blogposts[i].id} 
+            onClick={clicked}>
           {props.location.state.blogposts[i].topic}
-      </div>)
+        </li>)
   }
 
   if (goBack) {
@@ -46,7 +45,7 @@ function OlderPosts(props) {
     }
   }
 
-  return <div>{topics}</div>
+  return <ul>{topics}</ul>
 }
 
 export default OlderPosts
