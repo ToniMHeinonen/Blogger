@@ -20,7 +20,7 @@ public class BlogPost {
     private String author;
     @Column(name="TOPIC")
     private String topic;
-    @Column(name="TEXT")
+    @Column(name="TEXT", columnDefinition = "longtext")
     private String text;
     @Column(name="CREATIONDATE")
     private Date creationDate;
