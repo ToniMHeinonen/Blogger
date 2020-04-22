@@ -71,7 +71,7 @@ function Comment(props) {
     {getDate('Created', props.creationDate)}<br/>
     {props.lastModified === null ? null : <>{getDate('Last modified', props.lastModified)}<br/></>}
     Likes: {props.likes}</h5>
-    <p>{props.text}</p>
+    <p style={{whiteSpace: "pre-wrap"}}>{props.text}</p>
     {commentLiked !== 'true' ? <button disabled={sending} onClick={liked}>Like</button> : null}
     {!loggedIn ? null : <button disabled={sending} onClick={edited}>Edit comment</button>}
     {!loggedIn ? null : <button disabled={sending} onClick={deleted}>Delete comment</button>}
