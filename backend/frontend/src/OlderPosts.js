@@ -31,7 +31,7 @@ function OlderPosts(props) {
 
   if (showPost[1]) {
     for (let i = 0; i < props.location.state.blogposts.length; i++) {
-      if (props.location.state.blogposts[i].id === showPost[0]) {
+      if (props.location.state.blogposts[i].id + '' === showPost[0]) {
         return <><Post 
         key={props.location.state.blogposts[i].id}
         id={props.location.state.blogposts[i].id}
