@@ -124,8 +124,9 @@ function Post(props) {
     {getDate('Created', props.creationDate)}<br/>
     {props.lastModified === null ? null : <> {getDate('Last modified', props.lastModified)}</>}
     </h5>
-    {showMore ? <p>{props.text.substring(0, 200)}<br/><button onClick={showMoreClicked}>Show more</button></p> :
-    <p>{props.text}</p>}
+    {showMore ? <p style={{whiteSpace: "pre-wrap"}}>{props.text.substring(0, 200)}<br/>
+    <button onClick={showMoreClicked}>Show more</button></p> :
+    <p style={{whiteSpace: "pre-wrap"}}>{props.text}</p>}
     {!loggedIn ? null : <button disabled={sending} onClick={edited}>Edit</button>}
     {!loggedIn ? null : <button disabled={sending} onClick={deleted}>Delete</button>}
     <br/><br/>
