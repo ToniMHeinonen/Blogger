@@ -132,7 +132,7 @@ function Post(props) {
     </h5>
     {hideLongText ? <p style={{whiteSpace: "pre-wrap"}}>{props.text.substring(0, previewPostLimit) + '...'}<br/>
     <button onClick={showMoreClicked}>Show more</button></p> :
-    <p style={{whiteSpace: "pre-wrap"}}>{props.text} 
+    <p style={{whiteSpace: "pre-wrap"}}>{props.text}<br/>
     {props.text.length > previewPostLimit ? <button onClick={showMoreClicked}>Show less</button> : null}</p>}
     {!loggedIn ? null : <button disabled={sending} onClick={edited}>Edit</button>}
     {!loggedIn ? null : <button disabled={sending} onClick={deleted}>Delete</button>}
