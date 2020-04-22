@@ -2,6 +2,7 @@ import React from 'react'
 import LoginContext from './LoginContext'
 import { Redirect } from 'react-router-dom'
 import CheckComment from './util/CheckCommentLikes'
+import GetProperDate from './util/GetProperDate'
 
 /**
  * Comment-function. Contains data in comment.
@@ -12,17 +13,6 @@ function Comment(props) {
   const {loggedIn, changeLogin} = React.useContext(LoginContext)
   const [redirectToModify, setRedirectToModify] = React.useState(false)
   const [commentLiked, setCommentLiked] = CheckComment('comment' + props.id)
-
-  /**
-   * Get date in a valid format.
-   * @param {*} text - text before date
-   * @param {*} time - value to transform to valid format
-   */
-  function getDate(text, time) {
-    const date = new Date(time)
-    return <>{text}: {date.getDate()}.{date.getMonth()+1}.{date.getFullYear()} {(date.getHours() < 10 ? '0':'') + 
-    date.getHours()}:{(date.getMinutes() < 10 ? '0':'') + date.getMinutes()}</>
-  }
 
   /**
    * If Edit-button is clicked, setRedirectToModify to true.
@@ -68,8 +58,8 @@ function Comment(props) {
   return (
     <div>
     <h5>Author: {props.author}<br/>
-    {getDate('Created', props.creationDate)}<br/>
-    {props.lastModified === null ? null : <>{getDate('Last modified', props.lastModified)}<br/></>}
+    {GetProperDate('Created', props.creationDate)}<br/>
+    {props.lastModified === null ? null : <>{GetProperDate('Last modified', props.lastModified)}<br/></>}
     Likes: {props.likes}</h5>
     <p style={{whiteSpace: "pre-wrap"}}>{props.text}</p>
     {commentLiked !== 'true' ? <button disabled={sending} onClick={liked}>Like</button> : null}

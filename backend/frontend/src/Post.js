@@ -2,6 +2,7 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 import AllComments from './AllComments'
 import LoginContext from './LoginContext'
+import GetProperDate from './util/GetProperDate'
 
 /**
  * Post-function. Contains data in blogpost.
@@ -18,17 +19,6 @@ function Post(props) {
   const [hideLongText, setHideLongText] = React.useState(false)
   const ref = React.createRef()
   let previewPostLimit = 800
-
-  /**
-   * Get date in a valid format.
-   * @param {*} text - text before date
-   * @param {*} time - value to transform to valid format
-   */
-  function getDate(text, time) {
-    const date = new Date(time)
-    return <>{text}: {date.getDate()}.{date.getMonth()+1}.{date.getFullYear()} {(date.getHours() < 10 ? '0':'') + 
-    date.getHours()}:{(date.getMinutes() < 10 ? '0':'') + date.getMinutes()}</>
-  }
 
   /**
    * Delete clicked post.
@@ -127,8 +117,8 @@ function Post(props) {
     <div>
     <h1 ref={ref}>{props.topic}</h1>
     <h5>Author: {props.author}<br/>
-    {getDate('Created', props.creationDate)}<br/>
-    {props.lastModified === null ? null : <> {getDate('Last modified', props.lastModified)}</>}
+    {GetProperDate('Created', props.creationDate)}<br/>
+    {props.lastModified === null ? null : <> {GetProperDate('Last modified', props.lastModified)}</>}
     </h5>
     {hideLongText ? <p style={{whiteSpace: "pre-wrap"}}>{props.text.substring(0, previewPostLimit) + '...'}<br/>
     <button onClick={showMoreClicked}>Show more</button></p> :
