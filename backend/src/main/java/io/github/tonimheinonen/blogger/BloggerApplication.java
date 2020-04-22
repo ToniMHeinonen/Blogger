@@ -56,17 +56,17 @@ public class BloggerApplication implements CommandLineRunner  {
 		System.out.println("\nGET search comments by blog id and text:\ncurl -X GET http://localhost:8080/comments/{id}/search/{text}");
 		System.out.println("\nPOST new blog:\ncurl -X POST -H \"Content-Type: application/json\"" +
 		" -d \"{\\\"author\\\":\\\"Stephen\\\",\\\"topic\\\":\\\"Example\\\",\\\"text\\\":\\\"There was an ample wisdom" +
-		" in this example...\\\"}\" http://localhost:8080/blogposts");
+		" in this example...\\\"}\" http://localhost:8080/blogposts -u admin:admin");
 		System.out.println("\nPOST new comment by blog id:\ncurl -X POST -H \"Content-Type: application/json\"" +
 		" -d \"{\\\"author\\\":\\\"Matthew\\\",\\\"text\\\":\\\"This comment is the best\\\"}\" http://localhost:8080/comments/{id}");
 		System.out.println("\nPOST modify blog by id:\ncurl -X POST -H \"Content-Type: application/json\"" +
 		" -d \"{\\\"topic\\\":\\\"Example\\\",\\\"text\\\":\\\"There was an ample wisdom" +
-		" in this example...\\\"}\" http://localhost:8080/blogposts/{id}");
+		" in this example...\\\"}\" http://localhost:8080/blogposts/{id} -u admin:admin");
 		System.out.println("\nPOST modify comment by comment id:\ncurl -X POST -H \"Content-Type: application/json\"" +
-		" -d \"{\\\"text\\\":\\\"There was an ample wisdom in this example...\\\"}\" http://localhost:8080/comments/modify/{id}");
+		" -d \"{\\\"text\\\":\\\"There was an ample wisdom in this example...\\\"}\" http://localhost:8080/comments/modify/{id} -u admin:admin");
 		System.out.println("\nPOST like comment by comment id:\ncurl -X POST http://localhost:8080/comments/like/{id}");
-		System.out.println("\nDELETE blog by id:\ncurl -X DELETE http://localhost:8080/blogposts/{id}");
-		System.out.println("\nDELETE comment by comment id:\ncurl -X DELETE http://localhost:8080/comments/{id}");
+		System.out.println("\nDELETE blog by id:\ncurl -X DELETE http://localhost:8080/blogposts/{id} -u admin:admin");
+		System.out.println("\nDELETE comment by comment id:\ncurl -X DELETE http://localhost:8080/comments/{id} -u admin:admin");
 		System.out.println("\nNOTE - You can also use URL to heroku backend: https://intense-mountain-19543.herokuapp.com/");
 	}
 }
