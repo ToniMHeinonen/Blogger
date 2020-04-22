@@ -7,7 +7,7 @@ const CheckComment = (localStorageKey) => {
 
   React.useEffect(() => {
     localStorage.setItem(localStorageKey, value)
-  }, [value])
+  }, [localStorageKey, value])
 
   return [value, setValue]
 }

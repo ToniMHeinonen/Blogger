@@ -1,6 +1,6 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom'
 import Post from './Post'
+import GetProperDate from './util/GetProperDate'
 
 function OlderPosts(props) {
   let topics = []
@@ -20,7 +20,7 @@ function OlderPosts(props) {
         <li key={props.location.state.blogposts[i].id}
             id={props.location.state.blogposts[i].id} 
             onClick={clicked}>
-          {props.location.state.blogposts[i].topic}
+          {props.location.state.blogposts[i].topic} {GetProperDate(props.location.state.blogposts[i].creationDate)}
         </li>)
   }
 

@@ -58,8 +58,8 @@ function Comment(props) {
   return (
     <div>
     <h5>Author: {props.author}<br/>
-    {GetProperDate('Created', props.creationDate)}<br/>
-    {props.lastModified === null ? null : <>{GetProperDate('Last modified', props.lastModified)}<br/></>}
+    Created: {GetProperDate(props.creationDate)}<br/>
+    {props.lastModified === null ? null : <>Last modified: {GetProperDate(props.lastModified)}<br/></>}
     Likes: {props.likes}</h5>
     <p style={{whiteSpace: "pre-wrap"}}>{props.text}</p>
     {commentLiked !== 'true' ? <button disabled={sending} onClick={liked}>Like</button> : null}
