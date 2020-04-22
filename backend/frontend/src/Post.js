@@ -16,6 +16,7 @@ function Post(props) {
   const [errorWhenFetching, setErrorWhenFetching] = React.useState(false)
   const {loggedIn, changeLogin} = React.useContext(LoginContext)
   const [hideLongText, setHideLongText] = React.useState(false)
+  const ref = React.createRef()
 
   /**
    * Get date in a valid format.
@@ -57,6 +58,10 @@ function Post(props) {
   }
 
   const showMoreClicked = (event) => {
+    ref.current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    })
     setHideLongText(!hideLongText)
   }
 
@@ -119,7 +124,7 @@ function Post(props) {
 
   return (
     <div>
-    <h1>{props.topic}</h1>
+    <h1 ref={ref}>{props.topic}</h1>
     <h5>Author: {props.author}<br/>
     {getDate('Created', props.creationDate)}<br/>
     {props.lastModified === null ? null : <> {getDate('Last modified', props.lastModified)}</>}
