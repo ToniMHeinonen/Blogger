@@ -21,7 +21,7 @@ public class Comment {
 
     @Column(name="AUTHOR")
     private String author;
-    @Column(name="TEXT")
+    @Column(name="TEXT", columnDefinition = "longtext")
     private String text;
     @Column(name="LIKES")
     private int likes;
