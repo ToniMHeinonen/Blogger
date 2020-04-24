@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 import AllComments from './AllComments'
 import LoginContext from './LoginContext'
 import GetProperDate from './util/GetProperDate'
+import './css/post.css'
 
 /**
  * Post-function. Contains data in blogpost.
@@ -114,21 +115,21 @@ function Post(props) {
   }
 
   return (
-    <div>
-    <h1 ref={ref}>{props.topic}</h1>
-    <h5>Author: {props.author}<br/>
+    <div className="wholepost">
+    <h1 className="topic" ref={ref}>{props.topic}</h1>
+    <h5 className="bloginfo">Author: {props.author}<br/>
     Created: {GetProperDate(props.creationDate)}<br/>
     {props.lastModified === null ? null : <> Last modified: {GetProperDate(props.lastModified)}</>}
     </h5>
-    {hideLongText ? <p style={{whiteSpace: "pre-wrap"}}>{props.text.substring(0, previewPostLimit) + '...'}<br/>
-    <button onClick={showMoreClicked}>Show more</button></p> :
-    <p style={{whiteSpace: "pre-wrap"}}>{props.text}<br/>
-    {props.text.length > previewPostLimit ? <button onClick={showMoreClicked}>Show less</button> : null}</p>}
-    {!loggedIn ? null : <button disabled={sending} onClick={edited}>Edit</button>}
-    {!loggedIn ? null : <button disabled={sending} onClick={deleted}>Delete</button>}
+    {hideLongText ? <p className="blogtext">{props.text.substring(0, previewPostLimit) + '...'}<br/>
+    <button className="showtextbutton" onClick={showMoreClicked}>Show more</button></p> :
+    <p className="blogtext">{props.text}<br/>
+    {props.text.length > previewPostLimit ? <button className="showtextbutton" onClick={showMoreClicked}>Show less</button> : null}</p>}
+    {!loggedIn ? null : <button className="editbutton" disabled={sending} onClick={edited}>Edit</button>}
+    {!loggedIn ? null : <button className="deletebutton" disabled={sending} onClick={deleted}>Delete</button>}
     <br/><br/>
-    <h4>Comments</h4>
-    <button disabled={sending} onClick={addcomment}>Add comment</button>
+    <h4 className="commentstext">Comments</h4>
+    <button className="addcommentbutton" disabled={sending} onClick={addcomment}>Add comment</button>
     {isLoading ? 'Loading...' : <AllComments allComments={comments} amount={comments.length}/>}
     </div>
     )
