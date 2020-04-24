@@ -1,4 +1,4 @@
-package io.github.tonimheinonen.blogger;
+package io.github.tonimheinonen.blogger.comments;
 
 import java.util.Date;
 
@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import io.github.tonimheinonen.blogger.blogposts.BlogPost;
 
 /**
  * Represents a comment.

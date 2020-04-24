@@ -1,4 +1,4 @@
-package io.github.tonimheinonen.blogger;
+package io.github.tonimheinonen.blogger.comments;
 
 import java.util.Date;
 
@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import io.github.tonimheinonen.blogger.BloggerService;
+import io.github.tonimheinonen.blogger.blogposts.BlogPost;
 import io.github.tonimheinonen.blogger.errorhandling.EntityNotFoundException;
 
 /**

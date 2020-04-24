@@ -1,4 +1,4 @@
-package io.github.tonimheinonen.blogger;
+package io.github.tonimheinonen.blogger.comments;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import org.springframework.data.repository.CrudRepository;
  * @version 1.0
  * @since 1.0
  */
-interface CommentRepository extends CrudRepository<Comment, Long> {
+public interface CommentRepository extends CrudRepository<Comment, Long> {
     
     /**
      * Searched comments by provided blog post id.

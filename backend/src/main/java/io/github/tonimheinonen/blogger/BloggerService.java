@@ -4,6 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import io.github.tonimheinonen.blogger.errorhandling.EntityNotFoundException;
+import io.github.tonimheinonen.blogger.blogposts.BlogPost;
+import io.github.tonimheinonen.blogger.blogposts.BlogPostRepository;
+import io.github.tonimheinonen.blogger.comments.Comment;
+import io.github.tonimheinonen.blogger.comments.CommentRepository;
 
 @Service
 public class BloggerService {

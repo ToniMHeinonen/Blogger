@@ -1,4 +1,4 @@
-package io.github.tonimheinonen.blogger;
+package io.github.tonimheinonen.blogger.blogposts;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import org.springframework.data.repository.CrudRepository;
  * @version 1.0
  * @since 1.0
  */
-interface BlogPostRepository extends CrudRepository<BlogPost, Long> {
+public interface BlogPostRepository extends CrudRepository<BlogPost, Long> {
     
     /**
      * Searches blog posts by provided topic and text.

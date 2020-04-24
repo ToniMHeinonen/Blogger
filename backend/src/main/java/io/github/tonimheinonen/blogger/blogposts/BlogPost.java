@@ -1,4 +1,4 @@
-package io.github.tonimheinonen.blogger;
+package io.github.tonimheinonen.blogger.blogposts;
 
 import java.util.Date;
 

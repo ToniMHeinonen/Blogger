@@ -9,6 +9,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import io.github.tonimheinonen.blogger.blogposts.BlogPost;
+import io.github.tonimheinonen.blogger.blogposts.BlogPostRepository;
+import io.github.tonimheinonen.blogger.comments.Comment;
+import io.github.tonimheinonen.blogger.comments.CommentRepository;
+
 /**
  * Starts up the application.
  * @author Toni Heinonen
