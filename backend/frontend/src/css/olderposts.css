@@ -1,0 +1,14 @@
+.topics {
+  list-style-type: none;
+  padding: 0px;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.topics li:hover {
+  color: blue;
+}
+
+.topics li:nth-child(odd) {
+  background-color: lightgray;
+}
