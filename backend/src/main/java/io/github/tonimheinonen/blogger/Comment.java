@@ -11,6 +11,13 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/**
+ * Represents a comment.
+ * @author Toni Heinonen
+ * @author toni1.heinonen@gmail.com
+ * @version 1.0
+ * @since 1.0
+ */
 @Table(name="COMMENT")
 @Entity
 public class Comment {
@@ -34,8 +41,17 @@ public class Comment {
     @ManyToOne
     private BlogPost blogPost;
 
+    /**
+     * Default constructor for the Comment class.
+     */
     public Comment() {super();}
 
+    /**
+     * Constructor for BlogPost class with necessary values.
+     * @param author author of the blog post
+     * @param text text content of the blog post
+     * @param blogPost blog post to connect this comment to
+     */
     public Comment(String author, String text, BlogPost blogPost) {
         super();
         this.author = author;
@@ -45,55 +61,107 @@ public class Comment {
         this.blogPost = blogPost;
     }
 
+    /**
+     * Returns the id of the comment.
+     * @return blog post id
+     */
     public long getId() {
         return id;
     }
 
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public int getLikes() {
-        return likes;
-    }
-
-    public void setLikes(int likes) {
-        this.likes = likes;
-    }
-
-    public Date getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    public Date getLastModified() {
-        return lastModified;
-    }
-
-    public void setLastModified(Date lastModified) {
-        this.lastModified = lastModified;
-    }
-
-    public BlogPost getBlogPost() {
-        return blogPost;
-    }
-
-    public void setBlogPost(BlogPost blogPost) {
-        this.blogPost = blogPost;
-    }
-
+    /**
+     * Returns author of the comment.
+     * @return comment author
+     */
     public String getAuthor() {
         return author;
     }
 
+    /**
+     * Sets author of the comment.
+     * @param author comment author
+     */
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    /**
+     * Returns text content of the comment.
+     * @return blog post text content
+     */
+    public String getText() {
+        return text;
+    }
+
+    /**
+     * Sets text content for the comment.
+     * @param text comment text content
+     */
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    /**
+     * Returns the amount of likes the comment has.
+     * @return comment likes amount
+     */
+    public int getLikes() {
+        return likes;
+    }
+
+    /**
+     * Sets the amount of likes the comment has.
+     * @param likes comment likes amount
+     */
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
+
+    /**
+     * Returns creation date of the comment.
+     * @return comment creation date
+     */
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    /**
+     * Sets creation date for the comment.
+     * @param creationDate comment creation date
+     */
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    /**
+     * Returns last time modified of the comment.
+     * @return comment last time modified
+     */
+    public Date getLastModified() {
+        return lastModified;
+    }
+
+    /**
+     * Sets last time modified for the comment.
+     * @param lastModified comment last time modified
+     */
+    public void setLastModified(Date lastModified) {
+        this.lastModified = lastModified;
+    }
+
+    /**
+     * Returns the blog post this comment is connected to.
+     * @return connected blog post
+     */
+    public BlogPost getBlogPost() {
+        return blogPost;
+    }
+
+    /**
+     * Sets the blog post this comment is connected to.
+     * @param blogPost connected blog post
+     */
+    public void setBlogPost(BlogPost blogPost) {
+        this.blogPost = blogPost;
     }
 }
