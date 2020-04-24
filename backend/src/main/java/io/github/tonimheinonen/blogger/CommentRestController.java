@@ -23,16 +23,34 @@ public class CommentRestController {
     @Autowired
     CommentRepository commentDatabase;
 
+    /**
+     * Fetches all of the comments with provided blog id.
+     * @param blogId id of the blog to get comments from
+     * @return all fecthed comments
+     */
     @RequestMapping(value = "/comments/{blogId}", method= RequestMethod.GET)
     public Iterable<Comment> fetchComments(@PathVariable long blogId) {
         return commentDatabase.findByBlogPostId(blogId);
     }
 
+    /**
+     * Fetches all of the comments which contain provided text and blog id.
+     * @param blogId id of the blog to get comments from
+     * @param text text to search
+     * @return fetched comments
+     */
     @RequestMapping(value = "/comments/{blogId}/search/{text}", method= RequestMethod.GET)
     public Iterable<Comment> searchComments(@PathVariable long blogId, @PathVariable String text) {
         return commentDatabase.findByBlogPostIdAndTextContainsIgnoreCase(blogId, text);
     }
 
+    /**
+     * Adds new comment to the provided blog id.
+     * @param blogId id of the blog to add comment to
+     * @param comment provided comment, which contains author and text
+     * @param b URI to create
+     * @return whether adding was successfull or not
+     */
     @RequestMapping(value = "/comments/{blogId}", method= RequestMethod.POST)
     public ResponseEntity<Void> addComment(@PathVariable long blogId, @RequestBody Comment comment, UriComponentsBuilder b) {
         BlogPost blogPost = blogDatabase.findById(blogId).orElse(null);
@@ -47,6 +65,13 @@ public class CommentRestController {
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
 
+    /**
+     * Modifies the blog post which has the provided blog id.
+     * @param commentId id of the comment to modify
+     * @param comment modified comment, which contains author and text
+     * @param b URI to create
+     * @return whether modifying the comment was successfull or not
+     */
     @RequestMapping(value = "/comments/modify/{commentId}", method= RequestMethod.POST)
     public ResponseEntity<Void> modifyComment(@PathVariable long commentId, @RequestBody BlogPost comment, UriComponentsBuilder b) {
         Comment originalComment = commentDatabase.findById(commentId).orElse(null);
@@ -62,6 +87,12 @@ public class CommentRestController {
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
 
+    /**
+     * Adds one like to the provided comment id.
+     * @param commentId id of the comment to like
+     * @param b URI to create
+     * @return whether liking the comment was successfull or not
+     */
     @RequestMapping(value = "/comments/like/{commentId}", method= RequestMethod.POST)
     public ResponseEntity<Void> likeComment(@PathVariable long commentId, UriComponentsBuilder b) {
         Comment comment = commentDatabase.findById(commentId).orElse(null);
@@ -76,6 +107,11 @@ public class CommentRestController {
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
 
+    /**
+     * Deletes the comment which has the given id.
+     * @param commentId id of the comment to delete
+     * @return whether deletion was successfull or not
+     */
     @RequestMapping(value = "/comments/{commentId}", method= RequestMethod.DELETE)
     public ResponseEntity<Void> deleteComment(@PathVariable long commentId) {
         commentDatabase.deleteById(commentId);
