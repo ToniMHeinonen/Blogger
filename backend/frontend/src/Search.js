@@ -2,6 +2,7 @@ import React from 'react'
 import AllPosts from './AllPosts'
 import SearchResult from './SearchResult'
 import AllComments from './AllComments'
+import './css/search.css'
 
 /**
  * Search-function.
@@ -86,22 +87,22 @@ function Search() {
   return (
     <div>
     <form onSubmit={search}>
-      <label>Search from: </label>
-      <select id="items" name="items" onChange={check}>
+      <label className="searchfromtext">Search from: </label>
+      <select className="blogcommentdropdown" id="items" name="items" onChange={check}>
         <option value="blogposts">Blogposts</option>
         <option value="comments">Comments</option>
       </select>
       <br/>
       {showBlogChoice ? null : [
-      <label key="search">Search comments from blog:</label>,
+      <label className="searchfromcommentstext" key="search">Search comments from blog:</label>,
       <SearchResult key="posts" blogPosts={blogPosts} amount={blogPosts.length}/>,
       <br key="space"/>
       ]}
-      <label>
+      <label className="searchtext">
         Text (1-29 characters):
-        <input id="searchText" name="searchText" type="text"/>
-      </label>
-      <button disabled={sending}>Send</button>
+        <input className="inputtext" id="searchText" name="searchText" type="text"/>
+      </label><br/>
+      <button className="searchbutton" disabled={sending}>Search</button>
     </form>
     {hideBlogResult ? null : <AllPosts allBlogPosts={blogResult} amount={blogResult.length} from='search'/>}
     {hideCommentResult ? null : <AllComments allComments={commentResult} amount={commentResult.length} from='search'/>}

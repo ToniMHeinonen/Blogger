@@ -1,4 +1,5 @@
 import React from 'react'
+import './css/search.css'
 
 /**
  * Used to get topic of all blogposts to the form in Search.
@@ -16,7 +17,7 @@ function SearchResult(props) {
   }
 
   return (
-    <select id="blogID" name="blogID">
+    <select className="commentdropdown" id="blogID" name="blogID">
       {data}
     </select>
   )
