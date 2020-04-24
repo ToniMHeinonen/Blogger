@@ -17,6 +17,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import io.github.tonimheinonen.blogger.BloggerService;
 import io.github.tonimheinonen.blogger.comments.CommentRepository;
+import io.github.tonimheinonen.blogger.errorhandling.EntityNotFoundException;
 
 /* 
  * 
@@ -67,9 +68,10 @@ public class BlogPostRestController {
      * Fetches one blogpost which has the provided id.
      * @param blogId id of the blog post
      * @return fetched blog post
+     * @throws EntityNotFoundException if blog by given id does not exist
      */
     @RequestMapping(value = "/blogposts/{blogId}", method= RequestMethod.GET)
-    public BlogPost fetchBlogPost(@PathVariable Long blogId) {
+    public BlogPost fetchBlogPost(@PathVariable Long blogId) throws EntityNotFoundException {
         return bloggerService.getBlogPost(blogId);
     }
 
@@ -97,9 +99,10 @@ public class BlogPostRestController {
      * @param blog modified blog post, which contains author, topic and text
      * @param b URI to create
      * @return whether modifying the blog post was successfull or not
+     * @throws EntityNotFoundException if blog by given id does not exist
      */
     @RequestMapping(value = "/blogposts/{blogId}", method= RequestMethod.POST)
-    public ResponseEntity<Void> modifyBlogPost(@PathVariable Long blogId, @RequestBody BlogPost blog, UriComponentsBuilder b) {
+    public ResponseEntity<Void> modifyBlogPost(@PathVariable Long blogId, @RequestBody BlogPost blog, UriComponentsBuilder b) throws EntityNotFoundException {
         BlogPost originalBlog = bloggerService.getBlogPost(blogId);
 
         originalBlog.setTopic(blog.getTopic());
@@ -119,10 +122,11 @@ public class BlogPostRestController {
      * Deletes the blog post which has the given id.
      * @param blogId id of the blog post to delete
      * @return whether deletion was successfull or not
+     * @throws EntityNotFoundException if blog by given id does not exist
      */
     @Transactional
     @RequestMapping(value = "/blogposts/{blogId}", method= RequestMethod.DELETE)
-    public ResponseEntity<Void> deleteBlogPost(@PathVariable Long blogId) {
+    public ResponseEntity<Void> deleteBlogPost(@PathVariable Long blogId) throws EntityNotFoundException {
         bloggerService.getBlogPost(blogId);
 
         commentDatabase.removeAllByBlogPostId(blogId);
