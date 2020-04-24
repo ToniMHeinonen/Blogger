@@ -3,6 +3,7 @@ import LoginContext from './LoginContext'
 import { Redirect } from 'react-router-dom'
 import CheckComment from './util/CheckCommentLikes'
 import GetProperDate from './util/GetProperDate'
+import './css/comment.css'
 
 /**
  * Comment-function. Contains data in comment.
@@ -56,15 +57,15 @@ function Comment(props) {
   }
 
   return (
-    <div>
-    <h5>Author: {props.author}<br/>
+    <div className="wholecomment">
+    <h5 className="commentinfo">Author: {props.author}<br/>
     Created: {GetProperDate(props.creationDate)}<br/>
     {props.lastModified === null ? null : <>Last modified: {GetProperDate(props.lastModified)}<br/></>}
     Likes: {props.likes}</h5>
-    <p style={{whiteSpace: "pre-wrap"}}>{props.text}</p>
-    {commentLiked !== 'true' ? <button disabled={sending} onClick={liked}>Like</button> : null}
-    {!loggedIn ? null : <button disabled={sending} onClick={edited}>Edit comment</button>}
-    {!loggedIn ? null : <button disabled={sending} onClick={deleted}>Delete comment</button>}
+    <p className="commenttext" style={{whiteSpace: "pre-wrap"}}>{props.text}</p>
+    {commentLiked !== 'true' ? <button className="likecommentbutton" disabled={sending} onClick={liked}>Like</button> : null}
+    {!loggedIn ? null : <button className="editcommentbutton" disabled={sending} onClick={edited}>Edit comment</button>}
+    {!loggedIn ? null : <button className="deletecommentbutton" disabled={sending} onClick={deleted}>Delete comment</button>}
     <br/>
     </div>
   )

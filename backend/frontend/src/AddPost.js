@@ -1,6 +1,7 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 import Cookies from 'universal-cookie'
+import './css/addpost.css'
 
 /**
  * Add new blogpost.
@@ -39,23 +40,25 @@ function AddPost() {
   if (cookies.get('authCookie') === 'true') {
     return (
       <form onSubmit={send}>
-        <label>
+        <label className="topictext">
           Topic:
           <br/>
-          <input id="topic" name="topic" type="text"/>
+          <input className="topicinput" id="topic" name="topic" type="text"/>
         </label>
         <br/><br/>
-        <label>
+        <label className="authortext">
           Author:
           <br/>
-          <input id="author" name="author" type="text"/>
+          <input className="authorinput" id="author" name="author" type="text"/>
         </label>
         <br/><br/>
+        <label className="textbeforetextarea">
         Your story:
         <br/>
-        <textarea id="blogi" name="blogi" type="text"/>
+        <textarea className="textarea" id="blogi" name="blogi" type="text"/>
+        </label>
         <br/><br/>
-        <button disabled={sending}>Send</button>
+        <button className="sendbutton" disabled={sending}>Send</button>
       </form>
     )
   }
