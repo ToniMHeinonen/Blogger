@@ -9,6 +9,14 @@ import io.github.tonimheinonen.blogger.blogposts.BlogPostRepository;
 import io.github.tonimheinonen.blogger.comments.Comment;
 import io.github.tonimheinonen.blogger.comments.CommentRepository;
 
+/**
+ * Handles single blog post and comment retrieval.
+ * Throws an error if id is not found.
+ * @author Toni Heinonen
+ * @author toni1.heinonen@gmail.com
+ * @version 1.0
+ * @since 1.0
+ */
 @Service
 public class BloggerService {
 
@@ -18,6 +26,13 @@ public class BloggerService {
     @Autowired
     CommentRepository commentDatabase;
 
+    /**
+     * Checks if blog post with given id exists.
+     * 
+     * If blog post does not exist, throws EntityNotFoundException
+     * @param blogId id of the blog to load
+     * @return retrieved blog
+     */
     public BlogPost getBlogPost(Long blogId) {
         BlogPost blog = blogDatabase.findById(blogId).orElse(null);
 
@@ -27,6 +42,13 @@ public class BloggerService {
         return blog;
     }
 
+    /**
+     * Checks if comment with given id exists.
+     * 
+     * If comment does not exist, throws EntityNotFoundException
+     * @param commentId id of the comment to load
+     * @return retrieved comment
+     */
     public Comment getComment(Long commentId) {
         Comment comment = commentDatabase.findById(commentId).orElse(null);
 
