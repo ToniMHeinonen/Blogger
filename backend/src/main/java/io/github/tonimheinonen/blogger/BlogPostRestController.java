@@ -65,11 +65,11 @@ public class BlogPostRestController {
      * @return fetched blog post
      */
     @RequestMapping(value = "/blogposts/{blogId}", method= RequestMethod.GET)
-    public BlogPost fetchBlogPost(@PathVariable long blogId) {
+    public BlogPost fetchBlogPost(@PathVariable Long blogId) {
         BlogPost blog = blogDatabase.findById(blogId).orElse(null);
 
         if (blog == null)
-            throw new EntityNotFoundException();
+            throw new EntityNotFoundException(BlogPost.class, "id", blogId.toString());
         
         return blog;
     }
