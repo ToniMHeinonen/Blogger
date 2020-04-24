@@ -1,0 +1,39 @@
+.topic {
+  font-size: 40px;
+}
+
+.bloginfo {
+  font-size: 14px;
+}
+
+.blogtext {
+  white-space: pre-wrap;
+}
+
+.commentstext {
+  font-size: 14px;
+}
+
+.showtextbutton {
+  background-color: lightblue;
+}
+
+.editbutton {
+  background-color: beige;
+}
+
+.deletebutton {
+  background-color: red;
+}
+
+.addcommentbutton {
+  background-color: lightblue
+}
+
+.wholepost {
+  border-top: 0px;
+  border-left: 0px;
+  border-bottom: 2px;
+  border-right: 0px;
+  border-style: groove;
+}

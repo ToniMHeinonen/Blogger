@@ -1,5 +1,6 @@
 import React from 'react'
 import './App.css'
+import './css/navigation.css'
 import AddPost from './AddPost'
 import Home from './Home'
 import ModifyPost from './ModifyPost'
@@ -46,7 +47,7 @@ function App() {
     <Router>
       <div>
         <nav>
-            <ul>
+            <ul className="navi">
               <li>
                 <Link to="/">Home</Link>
               </li>
