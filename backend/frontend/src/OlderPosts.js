@@ -1,6 +1,7 @@
 import React from 'react'
 import Post from './Post'
 import GetProperDate from './util/GetProperDate'
+import './css/olderposts.css'
 
 function OlderPosts(props) {
   let topics = []
@@ -45,7 +46,7 @@ function OlderPosts(props) {
     }
   }
 
-  return <ul>{topics}</ul>
+  return <ol className="topics">{topics}</ol>
 }
 
 export default OlderPosts
