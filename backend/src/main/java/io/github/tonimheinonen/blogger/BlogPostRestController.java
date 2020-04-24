@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
-/**
+import io.github.tonimheinonen.blogger.errorhandling.EntityNotFoundException;
+
+/* 
+ * 
  * Controls fetch calls to blog posts and login.
  * @author Toni Heinonen
  * @author toni1.heinonen@gmail.com
@@ -63,7 +66,12 @@ public class BlogPostRestController {
      */
     @RequestMapping(value = "/blogposts/{blogId}", method= RequestMethod.GET)
     public BlogPost fetchBlogPost(@PathVariable long blogId) {
-        return blogDatabase.findById(blogId).get();
+        BlogPost blog = blogDatabase.findById(blogId).orElse(null);
+
+        if (blog == null)
+            throw new EntityNotFoundException();
+        
+        return blog;
     }
 
     /**
