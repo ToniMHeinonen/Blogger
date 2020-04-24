@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import io.github.tonimheinonen.blogger.errorhandling.EntityNotFoundException;
+
 /**
  * Controls fetch calls to comments.
  * @author Toni Heinonen
@@ -25,7 +27,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class CommentRestController {
     
     @Autowired
-    BlogPostRepository blogDatabase;
+    private BloggerService bloggerService;
 
     @Autowired
     CommentRepository commentDatabase;
@@ -36,7 +38,9 @@ public class CommentRestController {
      * @return all fecthed comments
      */
     @RequestMapping(value = "/comments/{blogId}", method= RequestMethod.GET)
-    public Iterable<Comment> fetchComments(@PathVariable long blogId) {
+    public Iterable<Comment> fetchComments(@PathVariable long blogId) throws EntityNotFoundException {
+        bloggerService.getBlogPost(blogId);
+        
         return commentDatabase.findByBlogPostId(blogId);
     }
 
@@ -59,8 +63,8 @@ public class CommentRestController {
      * @return whether adding was successfull or not
      */
     @RequestMapping(value = "/comments/{blogId}", method= RequestMethod.POST)
-    public ResponseEntity<Void> addComment(@PathVariable long blogId, @RequestBody Comment comment, UriComponentsBuilder b) {
-        BlogPost blogPost = blogDatabase.findById(blogId).orElse(null);
+    public ResponseEntity<Void> addComment(@PathVariable long blogId, @RequestBody Comment comment, UriComponentsBuilder b) throws EntityNotFoundException {
+        BlogPost blogPost = bloggerService.getBlogPost(blogId);
         comment.setCreationDate(new Date());
         comment.setBlogPost(blogPost);
         commentDatabase.save(comment);
@@ -80,8 +84,8 @@ public class CommentRestController {
      * @return whether modifying the comment was successfull or not
      */
     @RequestMapping(value = "/comments/modify/{commentId}", method= RequestMethod.POST)
-    public ResponseEntity<Void> modifyComment(@PathVariable long commentId, @RequestBody BlogPost comment, UriComponentsBuilder b) {
-        Comment originalComment = commentDatabase.findById(commentId).orElse(null);
+    public ResponseEntity<Void> modifyComment(@PathVariable long commentId, @RequestBody BlogPost comment, UriComponentsBuilder b) throws EntityNotFoundException {
+        Comment originalComment = bloggerService.getComment(commentId);
         originalComment.setText(comment.getText());
         originalComment.setLastModified(new Date());
 
@@ -101,8 +105,8 @@ public class CommentRestController {
      * @return whether liking the comment was successfull or not
      */
     @RequestMapping(value = "/comments/like/{commentId}", method= RequestMethod.POST)
-    public ResponseEntity<Void> likeComment(@PathVariable long commentId, UriComponentsBuilder b) {
-        Comment comment = commentDatabase.findById(commentId).orElse(null);
+    public ResponseEntity<Void> likeComment(@PathVariable long commentId, UriComponentsBuilder b) throws EntityNotFoundException {
+        Comment comment = bloggerService.getComment(commentId);
         int curLikes = comment.getLikes();
         comment.setLikes(curLikes + 1);
         commentDatabase.save(comment);
@@ -120,7 +124,9 @@ public class CommentRestController {
      * @return whether deletion was successfull or not
      */
     @RequestMapping(value = "/comments/{commentId}", method= RequestMethod.DELETE)
-    public ResponseEntity<Void> deleteComment(@PathVariable long commentId) {
+    public ResponseEntity<Void> deleteComment(@PathVariable long commentId) throws EntityNotFoundException {
+        bloggerService.getComment(commentId);
+        
         commentDatabase.deleteById(commentId);
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }

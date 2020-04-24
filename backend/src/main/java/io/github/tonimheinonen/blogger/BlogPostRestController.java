@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import io.github.tonimheinonen.blogger.errorhandling.EntityNotFoundException;
-
 /* 
  * 
  * Controls fetch calls to blog posts and login.
@@ -29,10 +27,13 @@ import io.github.tonimheinonen.blogger.errorhandling.EntityNotFoundException;
 public class BlogPostRestController {
 
     @Autowired
-    BlogPostRepository blogDatabase;
+    private BloggerService bloggerService;
 
     @Autowired
-    CommentRepository commentDatabase;
+    private BlogPostRepository blogDatabase;
+
+    @Autowired
+    private CommentRepository commentDatabase;
 
     /**
      * Logs in to the website.
@@ -66,12 +67,7 @@ public class BlogPostRestController {
      */
     @RequestMapping(value = "/blogposts/{blogId}", method= RequestMethod.GET)
     public BlogPost fetchBlogPost(@PathVariable Long blogId) {
-        BlogPost blog = blogDatabase.findById(blogId).orElse(null);
-
-        if (blog == null)
-            throw new EntityNotFoundException(BlogPost.class, "id", blogId.toString());
-        
-        return blog;
+        return bloggerService.getBlogPost(blogId);
     }
 
     /**
@@ -100,8 +96,9 @@ public class BlogPostRestController {
      * @return whether modifying the blog post was successfull or not
      */
     @RequestMapping(value = "/blogposts/{blogId}", method= RequestMethod.POST)
-    public ResponseEntity<Void> modifyBlogPost(@PathVariable long blogId, @RequestBody BlogPost blog, UriComponentsBuilder b) {
-        BlogPost originalBlog = blogDatabase.findById(blogId).orElse(null);
+    public ResponseEntity<Void> modifyBlogPost(@PathVariable Long blogId, @RequestBody BlogPost blog, UriComponentsBuilder b) {
+        BlogPost originalBlog = bloggerService.getBlogPost(blogId);
+
         originalBlog.setTopic(blog.getTopic());
         originalBlog.setText(blog.getText());
         originalBlog.setLastModified(new Date());
@@ -122,7 +119,9 @@ public class BlogPostRestController {
      */
     @Transactional
     @RequestMapping(value = "/blogposts/{blogId}", method= RequestMethod.DELETE)
-    public ResponseEntity<Void> deleteBlogPost(@PathVariable long blogId) {
+    public ResponseEntity<Void> deleteBlogPost(@PathVariable Long blogId) {
+        bloggerService.getBlogPost(blogId);
+
         commentDatabase.removeAllByBlogPostId(blogId);
         blogDatabase.deleteById(blogId);
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
