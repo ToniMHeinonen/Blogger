@@ -38,6 +38,7 @@ public class CommentRestController {
      * Fetches all of the comments with provided blog id.
      * @param blogId id of the blog to get comments from
      * @return all fecthed comments
+     * @throws EntityNotFoundException if blog by given id does not exist
      */
     @RequestMapping(value = "/comments/{blogId}", method= RequestMethod.GET)
     public Iterable<Comment> fetchComments(@PathVariable long blogId) throws EntityNotFoundException {
@@ -63,6 +64,7 @@ public class CommentRestController {
      * @param comment provided comment, which contains author and text
      * @param b URI to create
      * @return whether adding was successfull or not
+     * @throws EntityNotFoundException if blog by given id does not exist
      */
     @RequestMapping(value = "/comments/{blogId}", method= RequestMethod.POST)
     public ResponseEntity<Void> addComment(@PathVariable long blogId, @RequestBody Comment comment, UriComponentsBuilder b) throws EntityNotFoundException {
@@ -84,6 +86,7 @@ public class CommentRestController {
      * @param comment modified comment, which contains author and text
      * @param b URI to create
      * @return whether modifying the comment was successfull or not
+     * @throws EntityNotFoundException if comment by given id does not exist
      */
     @RequestMapping(value = "/comments/modify/{commentId}", method= RequestMethod.POST)
     public ResponseEntity<Void> modifyComment(@PathVariable long commentId, @RequestBody BlogPost comment, UriComponentsBuilder b) throws EntityNotFoundException {
@@ -105,6 +108,7 @@ public class CommentRestController {
      * @param commentId id of the comment to like
      * @param b URI to create
      * @return whether liking the comment was successfull or not
+     * @throws EntityNotFoundException if comment by given id does not exist
      */
     @RequestMapping(value = "/comments/like/{commentId}", method= RequestMethod.POST)
     public ResponseEntity<Void> likeComment(@PathVariable long commentId, UriComponentsBuilder b) throws EntityNotFoundException {
@@ -124,6 +128,7 @@ public class CommentRestController {
      * Deletes the comment which has the given id.
      * @param commentId id of the comment to delete
      * @return whether deletion was successfull or not
+     * @throws EntityNotFoundException if comment by given id does not exist
      */
     @RequestMapping(value = "/comments/{commentId}", method= RequestMethod.DELETE)
     public ResponseEntity<Void> deleteComment(@PathVariable long commentId) throws EntityNotFoundException {
