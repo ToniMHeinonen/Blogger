@@ -1,0 +1,30 @@
+.topictext {
+  font-weight: bold;
+}
+
+.topicinput {
+  border: 1px solid;
+}
+
+.authortext {
+  font-weight: bold;
+}
+
+.authorinput {
+  border: 1px solid;
+}
+
+.textbeforetextarea {
+  font-weight: bold;
+}
+
+.textarea {
+  border: 1px solid;
+  resize: none;
+  width: 400px;
+  height: 300px;
+}
+
+.sendbutton {
+  background-color: lightblue;
+}
