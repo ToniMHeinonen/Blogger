@@ -68,6 +68,9 @@ public class CommentRestController {
      */
     @RequestMapping(value = "/comments/{blogId}", method= RequestMethod.POST)
     public ResponseEntity<Void> addComment(@PathVariable long blogId, @RequestBody Comment comment, UriComponentsBuilder b) throws EntityNotFoundException {
+        // Check if comment has all the required fields
+        bloggerService.checkIsCommentValid(comment);
+        
         BlogPost blogPost = bloggerService.getBlogPost(blogId);
         comment.setCreationDate(new Date());
         comment.setBlogPost(blogPost);
@@ -89,8 +92,12 @@ public class CommentRestController {
      * @throws EntityNotFoundException if comment by given id does not exist
      */
     @RequestMapping(value = "/comments/modify/{commentId}", method= RequestMethod.POST)
-    public ResponseEntity<Void> modifyComment(@PathVariable long commentId, @RequestBody BlogPost comment, UriComponentsBuilder b) throws EntityNotFoundException {
+    public ResponseEntity<Void> modifyComment(@PathVariable long commentId, @RequestBody Comment comment, UriComponentsBuilder b) throws EntityNotFoundException {
+        // Check if comment has all the required fields
+        bloggerService.checkIsCommentValid(comment);
+        
         Comment originalComment = bloggerService.getComment(commentId);
+        originalComment.setAuthor(comment.getAuthor());
         originalComment.setText(comment.getText());
         originalComment.setLastModified(new Date());
 

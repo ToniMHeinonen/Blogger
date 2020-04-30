@@ -88,4 +88,27 @@ public class BloggerService {
             throw new EntityArgumentsInvalidException(BlogPost.class, errors.toArray(new String[errors.size()]));
         }
     }
+
+    /**
+     * Throws an error if provided comment is not valid.
+     * @param comment provided comment
+     */
+    public void checkIsCommentValid(Comment comment) {
+        ArrayList<String> errors = new ArrayList<>();
+
+        if (comment.getAuthor() == null) {
+            errors.add("author");
+            errors.add(null);
+        }
+
+        if (comment.getText() == null) {
+            errors.add("text");
+            errors.add(null);
+        }
+
+        // If error were found, throw an error with error parameters
+        if (!errors.isEmpty()) {
+            throw new EntityArgumentsInvalidException(Comment.class, errors.toArray(new String[errors.size()]));
+        }
+    }
 }

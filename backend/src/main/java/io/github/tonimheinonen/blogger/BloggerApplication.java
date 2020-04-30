@@ -102,7 +102,7 @@ public class BloggerApplication implements CommandLineRunner  {
 		System.out.println("\nPOST new comment by blog id:\ncurl -X POST -H \"Content-Type: application/json\"" +
 		" -d \"{\\\"author\\\":\\\"Matthew\\\",\\\"text\\\":\\\"This comment is the best\\\"}\" http://localhost:8080/comments/{id}");
 		System.out.println("\nPOST modify comment by comment id:\ncurl -X POST -H \"Content-Type: application/json\"" +
-		" -d \"{\\\"text\\\":\\\"There was an ample wisdom in this example...\\\"}\" http://localhost:8080/comments/modify/{id} -u admin:admin");
+		" -d \"{\\\"author\\\":\\\"Matthew\\\",\\\"text\\\":\\\"There was an ample wisdom in this example...\\\"}\" http://localhost:8080/comments/modify/{id} -u admin:admin");
 		System.out.println("\nPOST like comment by comment id:\ncurl -X POST http://localhost:8080/comments/like/{id}");
 
 		// DELETE
