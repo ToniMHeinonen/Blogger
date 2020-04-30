@@ -29,6 +29,9 @@ public class DatabaseConfig {
         HikariConfig config = new HikariConfig();
         config.setJdbcUrl(dbUrl);
 
+        // This probably fixes "WARN 7364 - Possibly consider using a shorter maxLifetime value".
+        config.setMaxLifetime(30000);
+
         return new HikariDataSource(config);
     }
 }
