@@ -5,7 +5,7 @@ import AddPost from './AddPost'
 import Home from './Home'
 import ModifyPost from './ModifyPost'
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route,
   Link
