@@ -9,8 +9,8 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>io.github.tonimheinonen</groupId>
-	<artifactId>blogger</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<artifactId>frontti-ja-bakki-jabat</artifactId>
+	<version>r1.0.0</version>
 	<name>Blogger</name>
 	<description>Blog platform</description>
 
