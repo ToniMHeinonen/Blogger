@@ -1,8 +1,11 @@
 package io.github.tonimheinonen.blogger;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import io.github.tonimheinonen.blogger.errorhandling.EntityArgumentsInvalidException;
 import io.github.tonimheinonen.blogger.errorhandling.EntityNotFoundException;
 import io.github.tonimheinonen.blogger.blogposts.BlogPost;
 import io.github.tonimheinonen.blogger.blogposts.BlogPostRepository;
@@ -56,5 +59,33 @@ public class BloggerService {
             throw new EntityNotFoundException(BlogPost.class, "id", commentId.toString());
         
         return comment;
+    }
+
+    /**
+     * Throws an error if provided blog post is not valid.
+     * @param blog provided blog post
+     */
+    public void checkIsBlogPostValid(BlogPost blog) {
+        ArrayList<String> errors = new ArrayList<>();
+
+        if (blog.getAuthor() == null) {
+            errors.add("author");
+            errors.add(null);
+        }
+        
+        if (blog.getTopic() == null) {
+            errors.add("topic");
+            errors.add(null);
+        }
+
+        if (blog.getText() == null) {
+            errors.add("text");
+            errors.add(null);
+        }
+
+        // If error were found, throw an error with error parameters
+        if (!errors.isEmpty()) {
+            throw new EntityArgumentsInvalidException(BlogPost.class, errors.toArray(new String[errors.size()]));
+        }
     }
 }

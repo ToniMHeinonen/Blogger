@@ -83,6 +83,9 @@ public class BlogPostRestController {
      */
     @RequestMapping(value = "/blogposts", method= RequestMethod.POST)
     public ResponseEntity<Void> addBlogPost(@RequestBody BlogPost blog, UriComponentsBuilder b) {
+        // Check if blog post has all the required fields
+        bloggerService.checkIsBlogPostValid(blog);
+
         blog.setCreationDate(new Date());
         blogDatabase.save(blog);
 
@@ -103,6 +106,9 @@ public class BlogPostRestController {
      */
     @RequestMapping(value = "/blogposts/{blogId}", method= RequestMethod.POST)
     public ResponseEntity<Void> modifyBlogPost(@PathVariable Long blogId, @RequestBody BlogPost blog, UriComponentsBuilder b) throws EntityNotFoundException {
+        // Check if blog post has all the required fields
+        bloggerService.checkIsBlogPostValid(blog);
+        
         BlogPost originalBlog = bloggerService.getBlogPost(blogId);
 
         originalBlog.setTopic(blog.getTopic());
