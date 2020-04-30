@@ -21,7 +21,7 @@ class ApiError {
     private LocalDateTime timestamp;
     private String message;
     private String debugMessage;
-    private List<ApiSubError> subErrors;
+    private List<ApiValidationError> subErrors;
  
     /**
      * Private constructor for setting timestamp to current time.
@@ -132,7 +132,7 @@ class ApiError {
      * Returns sub errors.
      * @return sur errors
      */
-    public List<ApiSubError> getSubErrors() {
+    public List<ApiValidationError> getSubErrors() {
         return subErrors;
     }
 
@@ -140,7 +140,7 @@ class ApiError {
      * Sets sub errors.
      * @param subErrors sub errors
      */
-    public void setSubErrors(List<ApiSubError> subErrors) {
+    public void setSubErrors(List<ApiValidationError> subErrors) {
         this.subErrors = subErrors;
     }
  }
