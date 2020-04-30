@@ -29,11 +29,6 @@ public class DatabaseConfig {
         HikariConfig config = new HikariConfig();
         config.setJdbcUrl(dbUrl);
 
-        // These probably fix the user 'root' has exceeded the 'max_user_connections' resource spring boot,
-        // it's hard to test since the problem is hard to reproduce
-        config.setMaxLifetime(30000);
-        config.setMaximumPoolSize(10);
-
         return new HikariDataSource(config);
     }
 }
