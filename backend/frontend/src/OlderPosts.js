@@ -35,7 +35,11 @@ function OlderPosts() {
     return <div>Error, when fetching blogposts. Try to reload the page.</div>
   }
 
-  return <OlderPostsTopics blogposts={blogPosts} amount={blogPosts.length}></OlderPostsTopics>
+  return (
+    <div>
+    {isLoading ? 'Loading...' : <OlderPostsTopics blogposts={blogPosts} amount={blogPosts.length}></OlderPostsTopics>}
+    </div>
+  )
 }
 
 export default OlderPosts
