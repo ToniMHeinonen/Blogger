@@ -31,6 +31,7 @@ public class DatabaseConfig {
 
         // This probably fixes "WARN 7364 - Possibly consider using a shorter maxLifetime value".
         config.setMaxLifetime(30000);
+        config.setMaximumPoolSize(5);
 
         return new HikariDataSource(config);
     }
