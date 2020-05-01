@@ -27,6 +27,7 @@ import io.github.tonimheinonen.blogger.errorhandling.EntityNotFoundException;
  * @version 1.0
  * @since 1.0
  */
+@Transactional
 @RestController
 public class BlogPostRestController {
 
@@ -130,7 +131,6 @@ public class BlogPostRestController {
      * @return whether deletion was successfull or not
      * @throws EntityNotFoundException if blog by given id does not exist
      */
-    @Transactional
     @RequestMapping(value = "/blogposts/{blogId}", method= RequestMethod.DELETE)
     public ResponseEntity<Void> deleteBlogPost(@PathVariable Long blogId) throws EntityNotFoundException {
         bloggerService.getBlogPost(blogId);

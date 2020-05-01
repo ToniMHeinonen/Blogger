@@ -30,8 +30,12 @@ public class DatabaseConfig {
         config.setJdbcUrl(dbUrl);
 
         // This probably fixes "WARN 7364 - Possibly consider using a shorter maxLifetime value".
-        config.setMaxLifetime(30000);
+        config.setMaxLifetime(60000);
+
+        // These and @Transactional annotations in controllers probably fix
+        // the error "User '{key}' has exceeded the 'max_user_connections'"
         config.setMaximumPoolSize(5);
+        config.setConnectionTimeout(60000);
 
         return new HikariDataSource(config);
     }
