@@ -1,20 +1,23 @@
 .commentinfo {
   width: fit-content;
+  padding-left: 20px;
 }
 
 .commenttext {
-
+  padding-left: 20px;
+  white-space: pre-wrap;
 }
 
 .likecommentbutton {
-
+  margin-left: 20px;
 }
 
 .editcommentbutton {
-
+  margin-left: 20px;
 }
 
 .deletecommentbutton {
+  margin-left: 20px;
   background-color: red;
 }
 

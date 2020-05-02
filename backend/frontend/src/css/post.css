@@ -1,21 +1,39 @@
 .topic {
-  font-size: 40px;
+  font-size: 28px;
+  padding-left: 20px;
+  background-color: #dcdcdc;
+  border-style: ridge;
+  border-left: 0px;
+  border-right: 0px;
+  margin-bottom: -20px;
+  font-weight: 800;
+  color: #17849A;
 }
 
 .bloginfo {
-  font-size: 14px;
+  font-size: 12px;
+  border-style: ridge;
+  border-left: 0px;
+  border-right: 0px;
+  border-top: 0px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-top: 10px;
+  background-color: #F2F2F2;
 }
 
 .blogtext {
   white-space: pre-wrap;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .commentstext {
+  padding-left: 20px;
   font-size: 14px;
 }
 
 .showtextbutton {
-  background-color: lightblue;
 }
 
 .editbutton {
@@ -27,13 +45,8 @@
 }
 
 .addcommentbutton {
-  background-color: lightblue
+  margin-left: 20px;
 }
 
 .wholepost {
-  border-top: 0px;
-  border-left: 0px;
-  border-bottom: 2px;
-  border-right: 0px;
-  border-style: groove;
 }

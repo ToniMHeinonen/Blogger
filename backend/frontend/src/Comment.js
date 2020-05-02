@@ -71,6 +71,4 @@ function Comment(props) {
   )
 }
 
-// {commentLiked != null ? null : <button disabled={sending} onClick={liked}>Like</button>}
-
 export default Comment

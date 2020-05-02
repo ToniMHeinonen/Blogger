@@ -45,8 +45,12 @@ function App() {
   return (
     <LoginContext.Provider value={{loggedIn, changeLogin}}>
     <Router>
-      <div>
-        <nav>
+      <div className="wholelayout">
+        <div className="header">
+        <h1>Blogger</h1>
+        by Toni Heinonen & Olli Ahonen
+        </div>
+        <nav className="upnavi">
             <ul className="navi">
               <li>
                 <Link to="/">Home</Link>
@@ -60,6 +64,9 @@ function App() {
               </li>
               <li>
                 <Link to="/login">Login</Link>
+              </li>
+              <li>
+                <Link to="olderPosts">All posts</Link>
               </li>
             </ul>
           </nav>

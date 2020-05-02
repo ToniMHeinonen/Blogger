@@ -1,13 +1,13 @@
 import React from 'react'
 import Post from './Post'
 import { Redirect } from 'react-router-dom'
+import './css/post.css'
 
 /**
  * Push each blogpost to array with properties.
  * @param {*} props - properties
  */
 function AllPosts(props) {
-  const [redirect, setRedirect] = React.useState(false)
   let data = []
   let newData = []
   let showPostsInPage = 5
@@ -38,24 +38,13 @@ function AllPosts(props) {
     }
   }
 
-  const clicked = (event) => {
-    setRedirect(true)
-  }
-
-  if (redirect) {
-    return <Redirect to={{
-      pathname: '/olderPosts',
-      state: {blogposts: props.allBlogPosts}
-    }}/>
-  }
-
   // If AllPosts is called from Search.
   if (data.length === 0 && props.from === 'search') {
     return <div>No posts found.</div>
   }
 
   return (
-    <div>{data.length > showPostsInPage ? <>{newData}<br/><button onClick={clicked}>Older posts</button></>: data}</div>
+    <div>{data.length > showPostsInPage ? <>{newData}<br/></>: data}</div>
   )
 }
 
