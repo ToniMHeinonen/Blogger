@@ -33,6 +33,11 @@
   font-size: 14px;
 }
 
+.commentstext:hover {
+  color: #17849A;
+  cursor: pointer;
+}
+
 .showtextbutton {
 }
 

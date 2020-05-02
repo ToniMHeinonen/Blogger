@@ -18,6 +18,7 @@ function Post(props) {
   const [errorWhenFetching, setErrorWhenFetching] = React.useState(false)
   const {loggedIn, changeLogin} = React.useContext(LoginContext)
   const [hideLongText, setHideLongText] = React.useState(false)
+  const [showComments, setShowComments] = React.useState(false)
   const ref = React.createRef()
   let previewPostLimit = 800
 
@@ -55,6 +56,10 @@ function Post(props) {
       block: 'start',
     })
     setHideLongText(!hideLongText)
+  }
+
+  const commentsClicked = (event) => {
+    setShowComments(!showComments)
   }
 
   /**
@@ -128,9 +133,9 @@ function Post(props) {
     {!loggedIn ? null : <button className="editbutton" disabled={sending} onClick={edited}>Edit</button>}
     {!loggedIn ? null : <button className="deletebutton" disabled={sending} onClick={deleted}>Delete</button>}
     <br/><br/>
-    <h4 className="commentstext">Comments ({comments.length})</h4>
+    <h4 className="commentstext" onClick={commentsClicked}>Comments ({comments.length})</h4>
     <button className="addcommentbutton" disabled={sending} onClick={addcomment}>Add comment</button>
-    {isLoading ? 'Loading...' : <AllComments allComments={comments} amount={comments.length}/>}
+  {isLoading ? 'Loading...' : <div> {!showComments ? null : <AllComments allComments={comments} amount={comments.length}/>}</div>}
     </div>
     )
 }
