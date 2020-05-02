@@ -53,5 +53,23 @@
   margin-left: 20px;
 }
 
+.arrowright {
+  border: solid black;
+  border-width: 0px 2px 2px 0px;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.arrowdown {
+  border: solid black;
+  border-width: 0px 2px 2px 0px;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
 .wholepost {
 }

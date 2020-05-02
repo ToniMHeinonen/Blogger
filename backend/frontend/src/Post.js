@@ -133,9 +133,12 @@ function Post(props) {
     {!loggedIn ? null : <button className="editbutton" disabled={sending} onClick={edited}>Edit</button>}
     {!loggedIn ? null : <button className="deletebutton" disabled={sending} onClick={deleted}>Delete</button>}
     <br/><br/>
-    <h4 className="commentstext" onClick={commentsClicked}>Comments ({comments.length})</h4>
+    <h4 className="commentstext" onClick={commentsClicked}>
+    {showComments ? <i className="arrowdown"></i> : <i className="arrowright"></i>} Comments ({comments.length})</h4>
     <button className="addcommentbutton" disabled={sending} onClick={addcomment}>Add comment</button>
-  {isLoading ? 'Loading...' : <div> {!showComments ? null : <AllComments allComments={comments} amount={comments.length}/>}</div>}
+    {isLoading ? 'Loading...' : 
+    <div> {!showComments ? null : 
+    <AllComments allComments={comments} amount={comments.length}/>}</div>}
     </div>
     )
 }
