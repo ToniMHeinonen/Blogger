@@ -37,7 +37,8 @@ function OlderPosts() {
 
   return (
     <div>
-    {isLoading ? 'Loading...' : <OlderPostsTopics blogposts={blogPosts} amount={blogPosts.length}></OlderPostsTopics>}
+    {isLoading ? <div className="loading">Loading...</div> : 
+    <OlderPostsTopics blogposts={blogPosts} amount={blogPosts.length}></OlderPostsTopics>}
     </div>
   )
 }

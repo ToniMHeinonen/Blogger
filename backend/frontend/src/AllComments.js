@@ -1,5 +1,6 @@
 import React from 'react'
 import Comment from './Comment'
+import './css/comment.css'
 
 /**
  * Push each comment to array with properties.
@@ -30,7 +31,7 @@ function AllComments(props) {
 
   // If AllComments is called from Search.
   if (data.length === 0 && props.from === 'search') {
-    return <div>No comments found.</div>
+    return <div className="nocomments">No comments found.</div>
   }
 
   return <div>{data}</div>

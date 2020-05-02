@@ -44,7 +44,7 @@ function AllPosts(props) {
   }
 
   return (
-    <div>{data.length > showPostsInPage ? <>{newData}<br/></>: data}</div>
+    <div>{data.length > showPostsInPage && props.from != 'search' ? <>{newData}<br/></>: data}</div>
   )
 }
 

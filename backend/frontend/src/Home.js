@@ -49,7 +49,7 @@ function Home() {
 
   return (
     <div>
-    {isLoading ? 'Loading...' : <AllPosts allBlogPosts={blogPosts} amount={blogPosts.length}/>}
+    {isLoading ? <div className="loading">Loading...</div> : <AllPosts allBlogPosts={blogPosts} amount={blogPosts.length}/>}
     </div>
   )
 }
