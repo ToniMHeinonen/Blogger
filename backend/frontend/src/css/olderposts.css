@@ -1,14 +1,22 @@
 .topics {
   list-style-type: none;
   padding: 0px;
-  width: fit-content;
   cursor: pointer;
+  margin-right: 20px;
+  background-color: #F2F2F2;
+  margin-left: 20px;
+  font-size: 15px;
 }
 
 .topics li:hover {
-  color: blue;
+  color: #17849A;
 }
 
 .topics li:nth-child(odd) {
-  background-color: lightgray;
+  background-color: #dcdcdc;
+}
+
+.backbutton {
+  margin-left: 20px;
+  margin-bottom: 20px;
 }

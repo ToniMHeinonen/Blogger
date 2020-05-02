@@ -85,7 +85,7 @@ function Search() {
   }, [])
 
   return (
-    <div>
+    <div className="wholesearch">
     <form onSubmit={search}>
       <label className="searchfromtext">Search from: </label>
       <select className="blogcommentdropdown" id="items" name="items" onChange={check}>

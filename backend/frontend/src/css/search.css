@@ -1,27 +1,35 @@
 .searchfromtext {
-
+  padding-left: 20px;
+  font-size: 15px;
 }
 
 .blogcommentdropdown {
-
+  margin-left: 5px;
 }
 
 .searchfromcommentstext {
-
+  padding-left: 20px;
+  font-size: 15px;
 }
 
 .commentdropdown {
-
+  margin-left: 5px;
 }
 
 .searchtext {
-
+  padding-left: 20px;
+  font-size: 15px;
 }
 
 .inputtext {
-
+  margin-left: 5px;
 }
 
 .searchbutton {
-  
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.wholesearch {
+  padding-top: 10px;
 }

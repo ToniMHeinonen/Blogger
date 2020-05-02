@@ -17,6 +17,7 @@ function OlderPostsTopics(props) {
   })
 
   const clicked = (event) => {
+    console.log(event.target.id)
     setShowPost([event.target.id, true])
   }
 
@@ -29,7 +30,7 @@ function OlderPostsTopics(props) {
         <li key={props.blogposts[i].id}
             id={props.blogposts[i].id} 
             onClick={clicked}>
-          {props.blogposts[i].topic} {GetProperDate(props.blogposts[i].creationDate)}
+          {props.blogposts[i].topic}<br/>{GetProperDate(props.blogposts[i].creationDate)}
         </li>)
   }
 
@@ -49,7 +50,7 @@ function OlderPostsTopics(props) {
         lastModified={props.blogposts[i].lastModified}
         text={props.blogposts[i].text}>
         </Post><br/>
-        <button onClick={backClicked}>Back</button></>
+        <button className="backbutton" onClick={backClicked}>Back</button></>
       }
     }
   }

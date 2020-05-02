@@ -2,6 +2,7 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 import LoginContext from './LoginContext'
 import Cookies from 'universal-cookie'
+import './css/login.css'
 
 /**
  * Login-function.
@@ -34,9 +35,9 @@ function Login() {
   }
 
   return (
-    <div>
+    <div className="login">
       Click to login.<br/>
-    <button onClick={send}>Login</button>
+    <button className="loginbutton" onClick={send}>Login</button>
     </div>
   )
 }
