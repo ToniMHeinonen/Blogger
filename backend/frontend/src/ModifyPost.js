@@ -1,6 +1,7 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 import Cookies from 'universal-cookie'
+import './css/addpost.css'
 
 /**
  * Modify blogpost.
@@ -39,24 +40,26 @@ function ModifyPost(props) {
   // If user is admin, show form.
   if (cookies.get('authCookie') === 'true') {
     return (
-      <form onSubmit={send}>
-        <label>
+      <form className="wholeform" onSubmit={send}>
+        <label className="topictext">
           Topic:
           <br/>
-          <input id="topic" name="topic" type="text" defaultValue={props.location.state.topic}/>
+          <input className="topicinput" id="topic" name="topic" type="text" defaultValue={props.location.state.topic}/>
         </label>
         <br/><br/>
-        <label>
+        <label className="authortext">
           Author:
           <br/>
-          <input id="author" name="author" type="text" defaultValue={props.location.state.author}/>
+          <input className="authorinput" id="author" name="author" type="text" defaultValue={props.location.state.author}/>
         </label>
         <br/><br/>
+        <label className="textbeforetextarea">
         Your story:
         <br/>
-        <textarea id="blogi" name="blogi" type="text" defaultValue={props.location.state.text}/>
+        <textarea className="textarea" id="blogi" name="blogi" type="text" defaultValue={props.location.state.text}/>
+        </label>
         <br/><br/>
-        <button disabled={sending}>Send</button>
+        <button className="sendbutton" disabled={sending}>Send</button>
       </form>
     )
   }

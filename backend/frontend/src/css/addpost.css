@@ -3,7 +3,6 @@
 }
 
 .topicinput {
-  border: 1px solid;
 }
 
 .authortext {
@@ -11,7 +10,6 @@
 }
 
 .authorinput {
-  border: 1px solid;
 }
 
 .textbeforetextarea {
@@ -19,12 +17,14 @@
 }
 
 .textarea {
-  border: 1px solid;
   resize: none;
   width: 400px;
   height: 300px;
 }
 
 .sendbutton {
-  background-color: lightblue;
+}
+
+.wholeform {
+  margin: 20px;
 }

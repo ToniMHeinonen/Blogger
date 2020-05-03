@@ -1,5 +1,6 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
+import './css/addpost.css'
 
 /**
  * Add comment.
@@ -35,16 +36,18 @@ function AddComment(props) {
   }
 
   return (
-    <form onSubmit={send}>
-      <label>
+    <form className="wholeform" onSubmit={send}>
+      <label className="authortext">
         Author:
         <br/>
-        <input id="author" name="author" type="text"/>
+        <input className="authorinput" id="author" name="author" type="text"/>
       </label>
       <br/><br/>
+      <label className="textbeforetextarea">
       Comment:
       <br/>
-      <textarea id="comment" name="comment" type="text"/>
+      <textarea className="textarea" id="comment" name="comment" type="text"/>
+      </label>
       <br/><br/>
       <button disabled={sending}>Send</button>
     </form>

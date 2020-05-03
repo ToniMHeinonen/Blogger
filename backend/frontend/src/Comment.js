@@ -58,9 +58,9 @@ function Comment(props) {
 
   return (
     <div className="wholecomment">
-    <h5 className="commentinfo">Author: {props.author}<br/>
-    Created: {GetProperDate(props.creationDate)}<br/>
-    {props.lastModified === null ? null : <>Last modified: {GetProperDate(props.lastModified)}<br/></>}
+    <h5 className="commentinfo">{props.author}<br/>
+    {GetProperDate(props.creationDate)}<br/>
+    {props.lastModified === null ? null : <>Edited: {GetProperDate(props.lastModified)}<br/></>}
     Likes: {props.likes}</h5>
     <p className="commenttext" style={{whiteSpace: "pre-wrap"}}>{props.text}</p>
     {commentLiked !== 'true' ? <button className="likecommentbutton" disabled={sending} onClick={liked}>Like</button> : null}

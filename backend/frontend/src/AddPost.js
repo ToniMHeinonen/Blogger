@@ -39,7 +39,7 @@ function AddPost() {
   // If user is admin, show form.
   if (cookies.get('authCookie') === 'true') {
     return (
-      <form onSubmit={send}>
+      <form className="wholeform" onSubmit={send}>
         <label className="topictext">
           Topic:
           <br/>

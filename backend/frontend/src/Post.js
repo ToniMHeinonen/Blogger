@@ -122,9 +122,9 @@ function Post(props) {
   return (
     <div className="wholepost">
     <h1 className="topic" ref={ref}>{props.topic}</h1>
-    <h5 className="bloginfo">Author: {props.author}<br/>
-    Created: {GetProperDate(props.creationDate)}<br/>
-    {props.lastModified === null ? null : <> Last modified: {GetProperDate(props.lastModified)}</>}
+    <h5 className="bloginfo">{props.author}<br/>
+    {GetProperDate(props.creationDate)}<br/>
+    {props.lastModified === null ? null : <> Edited: {GetProperDate(props.lastModified)}</>}
     </h5>
     {hideLongText ? <p className="blogtext">{props.text.substring(0, previewPostLimit) + '...'}<br/>
     <button className="showtextbutton" onClick={showMoreClicked}>Show more</button></p> :
