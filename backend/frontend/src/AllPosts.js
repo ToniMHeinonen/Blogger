@@ -1,6 +1,5 @@
 import React from 'react'
 import Post from './Post'
-import { Redirect } from 'react-router-dom'
 import './css/post.css'
 
 /**
@@ -44,7 +43,7 @@ function AllPosts(props) {
   }
 
   return (
-    <div>{data.length > showPostsInPage && props.from != 'search' ? <>{newData}<br/></>: data}</div>
+    <div>{data.length > showPostsInPage && props.from !== 'search' ? <>{newData}<br/></>: data}</div>
   )
 }
 
