@@ -37,3 +37,18 @@
 .navi li:hover {
   background-color: #17849A;
 }
+
+@media only screen and (max-width: 600px) {
+  .wholelayout {
+    margin-top: 10px;
+    margin-left: 2px;
+    margin-right: 2px;
+    border-style: solid;
+    border-radius: 25px;
+  }
+
+  .navi li {
+    display: block;
+    padding: 10px;
+  }
+}
