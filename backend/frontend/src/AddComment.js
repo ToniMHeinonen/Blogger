@@ -49,7 +49,7 @@ function AddComment(props) {
       <textarea className="textarea" id="comment" name="comment" type="text"/>
       </label>
       <br/><br/>
-      <button disabled={sending}>Send</button>
+      <button className="sendbutton" disabled={sending}>Send</button>
     </form>
   )
 }

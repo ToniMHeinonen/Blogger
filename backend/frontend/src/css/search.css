@@ -28,6 +28,26 @@
 .searchbutton {
   margin-left: 20px;
   margin-bottom: 20px;
+  display: inline-block;
+  border-radius: 5px;
+  border: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: #17849A;
+  color: #ffffff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.searchbutton:hover {
+  background-color: rgb(29, 181, 211);
+}
+
+.searchbutton:disabled {
+  background-color: rgb(184, 184, 184);
+  cursor: auto;
 }
 
 .wholesearch {
