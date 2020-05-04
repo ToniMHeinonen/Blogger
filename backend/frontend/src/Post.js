@@ -135,10 +135,11 @@ function Post(props) {
     <br/><br/>
     <h4 className="commentstext" onClick={commentsClicked}>
     {showComments ? <i className="arrowdown"></i> : <i className="arrowright"></i>} Comments ({comments.length})</h4>
-    <button className="addcommentbutton" disabled={sending} onClick={addcomment}>Add comment</button>
     {isLoading ? 'Loading...' : 
-    <div> {!showComments ? null : 
-    <AllComments allComments={comments} amount={comments.length}/>}</div>}
+    <div> {!showComments ? null : <>
+    <AllComments allComments={comments} amount={comments.length}/><br/>
+    <button className="addcommentbutton" disabled={sending} onClick={addcomment}>Add comment</button></>}
+    </div>}
     </div>
     )
 }
