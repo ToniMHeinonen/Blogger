@@ -110,6 +110,6 @@ public class BloggerApplication implements CommandLineRunner  {
 		System.out.println("\nDELETE comment by comment id:\ncurl -X DELETE http://localhost:8080/comments/{id} -u admin:admin");
 
 		// NOTE
-		System.out.println("\nNOTE - You can also use URL to heroku backend: https://intense-mountain-19543.herokuapp.com/");
+		System.out.println("\nNOTE - You can also use URL to heroku backend: https://frontti-ja-bakki-jabat.herokuapp.com/");
 	}
 }
