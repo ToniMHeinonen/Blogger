@@ -3,11 +3,18 @@ import Post from './Post'
 import GetProperDate from './util/GetProperDate'
 import './css/olderposts.css'
 
+/**
+ * Show topic and creation date of all blogposts.
+ * @param {*} props - properties
+ */
 function OlderPostsTopics(props) {
   let topics = []
   const [showPost, setShowPost] = React.useState([0, false])
   const [goBack, setGoBack] = React.useState(false)
 
+  /**
+   * Sort blogposts depending on the creation date.
+   */
   props.blogposts.sort((a, b) => {
     let keyA = a.creationDate
     let keyB = b.creationDate
@@ -16,11 +23,19 @@ function OlderPostsTopics(props) {
     return 0
   })
 
+  /**
+   * Called, when topic is clicked.
+   * @param {*} event 
+   */
   const clicked = (event) => {
     console.log(event.target.id)
     setShowPost([event.target.id, true])
   }
 
+  /**
+   * Called, when back-button is clicked.
+   * @param {*} event 
+   */
   const backClicked = (event) => {
     setGoBack(true)
   }

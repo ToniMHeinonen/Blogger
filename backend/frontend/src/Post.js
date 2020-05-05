@@ -50,6 +50,10 @@ function Post(props) {
     setRedirectToAddComment(true)
   }
 
+  /**
+   * Called, when show more/less -button is clicked. Scroll to beginning of the blogpost.
+   * @param {*} event - event from form.
+   */
   const showMoreClicked = (event) => {
     ref.current.scrollIntoView({
       behavior: 'smooth',
@@ -58,6 +62,10 @@ function Post(props) {
     setHideLongText(!hideLongText)
   }
 
+  /**
+   * Called, when comments-text is clicked. Show or hide comments.
+   * @param {*} event - event from form.
+   */
   const commentsClicked = (event) => {
     setShowComments(!showComments)
   }

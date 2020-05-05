@@ -9,6 +9,9 @@ import './css/comment.css'
 function AllComments(props) {
   let data = []
 
+  /**
+   * Sort comments depending on the creation date.
+   */
   props.allComments.sort((a, b) => {
     let keyA = a.creationDate
     let keyB = b.creationDate

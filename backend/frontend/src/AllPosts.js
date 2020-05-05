@@ -11,6 +11,9 @@ function AllPosts(props) {
   let newData = []
   let showPostsInPage = 5
 
+  /**
+   * Sort posts depending on the creation date.
+   */
   props.allBlogPosts.sort((a, b) => {
     let keyA = a.creationDate
     let keyB = b.creationDate

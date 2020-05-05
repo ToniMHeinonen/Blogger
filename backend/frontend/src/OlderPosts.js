@@ -1,11 +1,17 @@
 import React from 'react'
 import OlderPostsTopics from './OlderPostsTopics'
 
+/**
+ * Fetch all blogposts in /olderposts.
+ */
 function OlderPosts() {
   const [blogPosts, setBlogPosts] = React.useState([])
   const [isLoading, setIsLoading] = React.useState(false)
   const [errorWhenFetching, setErrorWhenFetching] = React.useState(false)
 
+  /**
+   * Fetch all blogposts.
+   */
   async function fetchBlogPosts() {
     setIsLoading(true)
     const hr = await fetch('/blogposts/')
@@ -13,6 +19,10 @@ function OlderPosts() {
     return json
   }
 
+  /**
+   * Fetch blogposts, when mounted. Cancel fetch, if user moves away from /olderposts
+   * in the middle of fetching.
+   */
   React.useEffect(() => {
     let isCancelled = false
 
